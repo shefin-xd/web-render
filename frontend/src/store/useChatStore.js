@@ -6,7 +6,7 @@ import { useAuthStore } from "./useAuthStore";
 export const useChatStore = create((set, get) => ({
   messages: [],
   users: [],
-  selectedUser: null,
+  selectedUser: JSON.parse(localStorage.getItem("selectedUser")) || null,
   isUsersLoading: false,
   isMessagesLoading: false,
 
@@ -36,7 +36,10 @@ export const useChatStore = create((set, get) => ({
   sendMessage: async (messageData) => {
     const { selectedUser, messages } = get();
     try {
-      const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);
+      const res = await axiosInstance.post(
+        `/messages/send/${selectedUser._id}`,
+        messageData
+      );
       set({ messages: [...messages, res.data] });
     } catch (error) {
       toast.error(error.response.data.message);
@@ -50,7 +53,8 @@ export const useChatStore = create((set, get) => ({
     const socket = useAuthStore.getState().socket;
 
     socket.on("newMessage", (newMessage) => {
-      const isMessageSentFromSelectedUser = newMessage.senderId === selectedUser._id;
+      const isMessageSentFromSelectedUser =
+        newMessage.senderId === selectedUser._id;
       if (!isMessageSentFromSelectedUser) return;
 
       set({
@@ -63,6 +67,17 @@ export const useChatStore = create((set, get) => ({
     const socket = useAuthStore.getState().socket;
     socket.off("newMessage");
   },
+  setSelectedUser: (user) => {
+    if (!user?._id) {
+      console.warn("Attempting to set invalid user:", user);
+      return;
+    }
+    localStorage.setItem("selectedUser", JSON.stringify(user));
+    set({ selectedUser: user });
+  },
 
-  setSelectedUser: (selectedUser) => set({ selectedUser }),
+  clearSelectedUser: () => {
+    localStorage.removeItem("selectedUser");
+    set({ selectedUser: null });
+  },
 }));

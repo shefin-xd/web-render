@@ -4,6 +4,9 @@ import Message from "../models/message.model.js";
 import cloudinary from "../lib/cloudinary.js";
 import { getReceiverSocketId, io } from "../lib/socket.js";
 
+export const home = (req,res) =>{
+  return res.status(200).json({message:"Hello World"})
+}
 export const getUsersForSidebar = async (req, res) => {
   try {
     const loggedInUserId = req.user._id;

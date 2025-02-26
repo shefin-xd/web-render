@@ -3,6 +3,10 @@ import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import cloudinary from "../lib/cloudinary.js";
 
+export const helloWorld = (req,res) =>{
+  return res.status(200).json({message: "Hello World"})
+}
+
 export const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
   try {

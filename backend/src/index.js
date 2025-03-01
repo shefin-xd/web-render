@@ -15,8 +15,10 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
-
-app.use(express.json());
+// If i try to upload a large image size i got an error of payload size exceeded
+//therefore i added these modifications to backend
+app.use(express.json({ limit: '50mb' })); // Parse JSON payloads with a size limit of 50MB
+app.use(express.urlencoded({ limit: '50mb', extended: true })); // Parse URL-encoded data with a size limit of 50MB
 app.use(cookieParser());
 app.use(
   cors({

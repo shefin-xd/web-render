@@ -31,8 +31,11 @@ NODE_ENV=development
 
 ### Build the app
 
+this is build command
+
 ```shell
 npm run build
+
 ```
 
 ### Start the app

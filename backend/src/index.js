@@ -25,7 +25,12 @@ app.use(
     credentials: true,
   })
 );
-
+app.get("/", (req, res) => {
+  res.send({
+    activeStatus: "true",
+    error: false,
+  });
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 

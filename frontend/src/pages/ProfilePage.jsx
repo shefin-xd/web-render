@@ -8,6 +8,9 @@ const ProfilePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteInput, setDeleteInput] = useState("");
+
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -149,15 +152,64 @@ const Modal = ({ isOpen, onClose }) => {
             </button>
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
+             <button
+                        onClick={() => setShowDeleteModal(true)}
+                        className="btn bg-red-600 text-white flex items-center w-full"
+                    >
+                        <Trash2 className="w-5 h-5" />
+                        Delete Profile
+                    </button>
+
         </div>
       </div>
 
+
+            {showDeleteModal && (
+            <div className="fixed inset-0 flex items-center justify-center z-50" onClick={(e) => e.stopPropagation()}>
+              <div className="modal modal-open">
+                <div className="modal-box">
+                    
+                        <h2 className="font-bold text-center text-lg">Delete Your Profile</h2>
+                    <p className="text-sm text-gray-500 mt-2 text-center">
+                       Type <strong>delete</strong> to confirm account deletion.
+                    </p>
+                        <input
+                            type="text"
+                            className="w-full p-2 border rounded mt-3"
+                            placeholder=""
+                            value={deleteInput}
+                            onChange={(e) => setDeleteInput(e.target.value)}
+                        />
+                        <div className="flex justify-between mt-4">
+                            <button
+                                onClick={() => setShowDeleteModal(false)}
+                                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition flex items-center gap-1"
+                            >
+                                <XCircle className="w-4 h-4" />
+                                Cancel
+                            </button>
+                            <button
+                                onClick={handleDeleteProfile}
+                                className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${
+                                    deleteInput !== "delete" ? "opacity-50 cursor-not-allowed" : ""
+                                }`}
+                                disabled={deleteInput !== "delete"}
+                            >
+                                <Trash2 className="w-4 h-4" />
+                                {isProfileDeleting ? "Deleting..." : "Confirm"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            )}
       
 
               {/* Open the modal using document.getElementById('ID').showModal() method */}
 
 {/*            
             {showDeleteMenu && (
+            <div className="fixed inset-0 flex items-center justify-center z-50">
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={(e) => e.stopPropagation()}>
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
                         <h2 className="text-lg font-semibold text-center text-red-600">Confirm Profile Deletion</h2>
@@ -196,6 +248,8 @@ const Modal = ({ isOpen, onClose }) => {
         
 */}
 
+
+      
 
 
 

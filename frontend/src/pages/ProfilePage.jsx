@@ -39,31 +39,41 @@ const Modal = ({ isOpen, onClose }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="modal modal-open">
                 <div className="modal-box">
-                    <h2 className="font-bold text-lg">Enter Your Input</h2>
+                    <h2 className="font-bold text-center text-lg">Delete Your Profile</h2>
+                  <p className="text-sm text-gray-500 mt-2 text-center">
+                            Type <strong>delete</strong> to confirm account deletion.
+                        </p>
                     <input
                         type="text"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         className="input input-bordered w-full mt-4"
-                        placeholder="Type something..."
+                        placeholder=""
                     />
+
+
+
+                  
                     <div className="modal-action">
                         <button className="btn" onClick={onClose}>
                             Cancel
                         </button>
-                        <button className="btn btn-primary" onClick={() => {
-                            console.log(inputValue); // Handle the next action here
-                            onClose();
-                        }}>
-                            Next
-                        </button>
+                        <button onClick={handleDeleteProfile}
+                          className={`btn btn-primary` ${ 
+                            inputValue !== "delete" ? "opacity-50 cursor-not-allowed" : ""
+                     }`}
+                      disabled={inputValue !== "delete"}
+                      >
+                            <Trash2 className="w-4 h-4" />
+                                {isDeletingProfile ? "Deleting..." : "Confirm"}
+                            </button>
                     </div>
                 </div>
             </div>
             <div className="modal-overlay" onClick={onClose}></div>
         </div>
     );
-      }
+};
 
 
   

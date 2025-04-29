@@ -82,6 +82,16 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
+  deleteProfile: async () => {
+    try {
+      await axiosInstance.delete("/auth/delete-profile");
+      set({ authUser: null });
+      toast.success("Profile deleted successfully");
+    } catch (error) {
+      toast.error(error.response.data.message)
+    }
+  },
+ 
   connectSocket: () => {
     const { authUser } = get();
     if (!authUser || get().socket?.connected) return;

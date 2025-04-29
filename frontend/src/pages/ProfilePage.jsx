@@ -110,7 +110,7 @@ const ProfilePage = () => {
           </div>
           {/* delete profile button */}
 
-          <button className="btn bg-red-500 text-white hover:bg-red-600 flex items-center">
+          <button className="btn bg-red-600 text-white hover:bg-red-700 flex items-center">
        <Trash2 className="w-5 h-5" />
             Delete Profile
 

@@ -6,9 +6,6 @@ const ProfilePage = () => {
   const { authUser, isUpdatingProfile, isDeletingProfile, updateProfile, deleteProfile } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showDeleteMenu, setShowDeleteMenu] = useState(false);
-  const [showDeleteModal, setshowDeleteModal] = useState(false);
-  const [deleteInput, setDeleteInput] = useState("");
   const [inputValue, setInputValue] = useState("");
 
   const handleImageUpload = async (e) => {
@@ -147,60 +144,16 @@ const Modal = ({ isOpen, onClose }) => {
           </div>
           {/* delete profile button */}
 
-          <button
-            onClick={() => setShowDeleteModal(true)}
-            className="btn bg-red-600 text-white flex items-center w-full">
-            <Trash2 className="w-5 h-5" />
+          <button className="btn bg-red-600 text-white flex items-center w-full" onClick={() => setIsModalOpen(true)}>
+                <Trash2 className="w-5 h-5" />
               Delete Profile
-          </button>
+            </button>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
         </div>
       </div>
 
       
-
-{showDeleteMenu && (
-      <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="modal modal-open">
-                <div className="modal-box">
-                    <h2 className="font-bold text-center text-lg">Delete Your Profile</h2>
-                  <p className="text-sm text-gray-500 mt-2 text-center">
-                            Type <strong>delete</strong> to confirm account deletion.
-                        </p>
-                    <input
-                        type="text"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        className="input input-bordered w-full mt-4"
-                        placeholder=""
-                    />
-                    <div className="modal-action">
-                        <button className="btn" onClick={onClose}>
-                            Cancel
-                        </button>
-                        <button className="btn btn-primary" onClick={() => {
-                            console.log(inputValue); // Handle the next action here
-                            onClose();
-                        }}>
-                            Next
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div className="modal-overlay" onClick={onClose}></div>
-        </div>
-
-  )}
-
-
-        <div className="flex items-center justify-center h-screen bg-gray-100">
-            <button className="btn" onClick={() => setshowDeleteModal(true)}>
-                Open Modal
-            </button>
-            <Modal isOpen={showDeleteModal} onClose={() => setshowDeleteModal(false)} />
-        </div>
-    
-
 
               {/* Open the modal using document.getElementById('ID').showModal() method */}
 

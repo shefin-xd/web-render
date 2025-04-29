@@ -164,19 +164,17 @@ const Modal = ({ isOpen, onClose }) => {
       </div>
 
 
-            {showDeleteModal && (
-            <div className="fixed inset-0 flex items-center justify-center z-50" onClick={(e) => e.stopPropagation()}>
-              <div className="modal modal-open">
-                <div className="modal-box">
-                    
-                        <h2 className="font-bold text-center text-lg">Delete Your Profile</h2>
-                    <p className="text-sm text-gray-500 mt-2 text-center">
-                       Type <strong>delete</strong> to confirm account deletion.
-                    </p>
+{showDeleteModal && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={(e) => e.stopPropagation()}>
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                        <h2 className="text-lg font-semibold text-center text-red-600">Confirm Profile Deletion</h2>
+                        <p className="text-sm text-gray-500 mt-2 text-center">
+                            Type <strong>delete</strong> to confirm account deletion.
+                        </p>
                         <input
                             type="text"
                             className="w-full p-2 border rounded mt-3"
-                            placeholder=""
+                            placeholder="Type 'delete' here..."
                             value={deleteInput}
                             onChange={(e) => setDeleteInput(e.target.value)}
                         />
@@ -200,7 +198,6 @@ const Modal = ({ isOpen, onClose }) => {
                             </button>
                         </div>
                     </div>
-                </div>
                 </div>
             )}
       

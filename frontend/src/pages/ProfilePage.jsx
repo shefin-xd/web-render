@@ -160,7 +160,6 @@ const Modal = ({ isOpen, onClose }) => {
       
 
 
-return (
         <div className="flex items-center justify-center h-screen bg-gray-100">
             <button className="btn" onClick={() => setIsModalOpen(true)}>
                 Open Modal
@@ -168,7 +167,7 @@ return (
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     
-)
+
 
               {/* Open the modal using document.getElementById('ID').showModal() method */}
 

@@ -110,30 +110,19 @@ const ProfilePage = () => {
           </div>
           {/* delete profile button */}
 
-          <button className="btn bg-red-600 text-white flex items-center w-full">
-       <Trash2 className="w-5 h-5" />
-            Delete Profile
-
-            </button>
-        
-          <button className="btn btn-red w-full">
-            <Trash2 className="w-5 h-5" />
-            Delete Profile
-
-            </button>
           <button
             onClick={() => setShowDeleteModal(true)}
-            className="w-full p-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2"
-          >
-          <Trash2 className="w-5 h-5" />
-            Delete Profile
+            className="btn bg-red-600 text-white flex items-center w-full">
+            <Trash2 className="w-5 h-5" />
+              Delete Profile
           </button>
+
         </div>
       </div>
 
 
               {/* Open the modal using document.getElementById('ID').showModal() method */}
-<button className="btn" onClick={()=>document.getElementById('my_modal_2').showModal()}>open modal</button>
+{showDeleteMenu && (
 <dialog id="my_modal_2" className="modal">
   <div className="modal-box">
     <h3 className="font-bold text-lg">Hello!</h3>
@@ -143,6 +132,7 @@ const ProfilePage = () => {
     <button>close</button>
   </form>
 </dialog>
+  )}
 {/*            
             {showDeleteMenu && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={(e) => e.stopPropagation()}>

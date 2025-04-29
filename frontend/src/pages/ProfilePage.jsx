@@ -33,7 +33,43 @@ const ProfilePage = () => {
     await deleteProfile();
     };
 
+const Modal = ({ isOpen, onClose }) => {
+    const [inputValue, setInputValue] = useState('');
 
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="modal modal-open">
+                <div className="modal-box">
+                    <h2 className="font-bold text-lg">Enter Your Input</h2>
+                    <input
+                        type="text"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        className="input input-bordered w-full mt-4"
+                        placeholder="Type something..."
+                    />
+                    <div className="modal-action">
+                        <button className="btn" onClick={onClose}>
+                            Cancel
+                        </button>
+                        <button className="btn btn-primary" onClick={() => {
+                            console.log(inputValue); // Handle the next action here
+                            onClose();
+                        }}>
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div className="modal-overlay" onClick={onClose}></div>
+        </div>
+    );
+      }
+
+
+  
   return (
     <div className="h-screen pt-20">
       <div className="max-w-2xl mx-auto p-4 py-8">
@@ -123,50 +159,16 @@ const ProfilePage = () => {
 
       
 
-const Modal = ({ isOpen, onClose }) => {
-    const [inputValue, setInputValue] = useState('');
 
-    if (!isOpen) return null;
-
-    return (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="modal modal-open">
-                <div className="modal-box">
-                    <h2 className="font-bold text-lg">Enter Your Input</h2>
-                    <input
-                        type="text"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        className="input input-bordered w-full mt-4"
-                        placeholder="Type something..."
-                    />
-                    <div className="modal-action">
-                        <button className="btn" onClick={onClose}>
-                            Cancel
-                        </button>
-                        <button className="btn btn-primary" onClick={() => {
-                            console.log(inputValue); // Handle the next action here
-                            onClose();
-                        }}>
-                            Next
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div className="modal-overlay" onClick={onClose}></div>
-        </div>
-    );
-      }
-
-
+return (
         <div className="flex items-center justify-center h-screen bg-gray-100">
             <button className="btn" onClick={() => setIsModalOpen(true)}>
                 Open Modal
             </button>
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
-    )
-
+    
+)
 
               {/* Open the modal using document.getElementById('ID').showModal() method */}
 

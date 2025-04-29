@@ -115,7 +115,8 @@ const ProfilePage = () => {
             Delete Profile
 
             </button>
-          <button className="btn btn-error w-full">
+        
+          <button className="btn btn-red w-full">
             <Trash2 className="w-5 h-5" />
             Delete Profile
 

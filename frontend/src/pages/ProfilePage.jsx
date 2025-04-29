@@ -6,6 +6,7 @@ const ProfilePage = () => {
   const { authUser, isUpdatingProfile, isDeletingProfile, updateProfile, deleteProfile } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
   const [showDeleteMenu, setShowDeleteMenu] = useState(false);
+  const [showDeleteModal, setshowDeleteModal] = useState(false);
   const [deleteInput, setDeleteInput] = useState("");
 
   const handleImageUpload = async (e) => {
@@ -109,7 +110,7 @@ const ProfilePage = () => {
           </div>
           {/* delete profile button */}
           <button
-            onClick={() => setShowDeleteMenu(true)}
+            onClick={() => setShowDeleteModal(true)}
             className="w-full p-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2"
           >
           <Trash2 className="w-5 h-5" />
@@ -117,8 +118,20 @@ const ProfilePage = () => {
           </button>
         </div>
       </div>
-
-            {/* DELETE PROFILE MODAL */}
+{showDeleteModal && (
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+<button className="btn" onClick={()=>document.getElementById('my_modal_2').showModal()}>open modal</button>
+<dialog id="my_modal_2" className="modal">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click outside to close</p>
+  </div>
+  <form method="dialog" className="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+)}
+/*            {/* DELETE PROFILE MODAL */}
             {showDeleteMenu && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={(e) => e.stopPropagation()}>
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
@@ -156,7 +169,7 @@ const ProfilePage = () => {
                 </div>
             )}
         
-
+*/
 
 
 

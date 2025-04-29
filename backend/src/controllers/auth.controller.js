@@ -108,6 +108,32 @@ export const updateProfile = async (req, res) => {
   }
 };
 
+export const deleteProfile = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    await User.findByIdAndDelete(userId);
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({ message: "Account deleted successfully" });
+  } catch (error) {
+    console.log("error in delete profile:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const getLastSeen = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id).select("lastSeen");
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    res.status(200).json({ lastSeen: user.lastSeen })
+  } catch (error) {
+    console.log("error in fetching last seen:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 export const checkAuth = (req, res) => {
   try {
     res.status(200).json(req.user);

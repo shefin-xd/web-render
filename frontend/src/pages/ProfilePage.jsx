@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState, useEffect, useRef } from 'react';
+
 import { useAuthStore } from "../store/useAuthStore";
 import { Camera, Mail, User, Trash2, XCircle } from "lucide-react";
 
@@ -34,7 +35,7 @@ const ProfilePage = () => {
     await deleteProfile();
     };
 
-  import React, { useEffect, useRef } from 'react';
+
 
 const Modal = ({ isOpen, onClose }) => {
     const inputRef = useRef(null);

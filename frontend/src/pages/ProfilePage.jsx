@@ -118,8 +118,9 @@ const ProfilePage = () => {
           </button>
         </div>
       </div>
-{showDeleteModal && (
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+
+              {/* Open the modal using document.getElementById('ID').showModal() method */}
 <button className="btn" onClick={()=>document.getElementById('my_modal_2').showModal()}>open modal</button>
 <dialog id="my_modal_2" className="modal">
   <div className="modal-box">
@@ -130,7 +131,6 @@ const ProfilePage = () => {
     <button>close</button>
   </form>
 </dialog>
-)}
 {/*            
             {showDeleteMenu && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={(e) => e.stopPropagation()}>

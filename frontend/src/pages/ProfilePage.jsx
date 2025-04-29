@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Camera, Mail, User } from "lucide-react";
+import { Camera, Mail, User, Trash2, XCircle } from "lucide-react";
 
 const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
@@ -96,6 +96,13 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
+          {/* delete profile button */}
+          <button
+            className="w-full p-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2"
+          >
+          <Trash2 className="w-5 h-5" />
+            Delete Profile
+          </button>
         </div>
       </div>
     </div>

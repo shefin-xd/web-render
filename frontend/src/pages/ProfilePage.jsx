@@ -27,7 +27,7 @@ const ProfilePage = () => {
   };
 
   const handleDeleteProfile = async () => {
-    if (deleteInput !== "delete") {
+    if (inputValue !== "delete") {
       toast.error("You must type 'delete' to confirm account deletion.");
       return;
     }

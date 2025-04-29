@@ -34,30 +34,34 @@ const ProfilePage = () => {
     await deleteProfile();
     };
 
+  import React, { useEffect, useRef } from 'react';
+
 const Modal = ({ isOpen, onClose }) => {
-    if (!isOpen) return null;
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (isOpen) {
+            inputRef.current.focus();
+        }
+    }, [isOpen]);
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="modal modal-open">
+        <div className={`fixed inset-0 flex items-center justify-center z-50 ${isOpen ? 'modal-open' : ''}`}>
+            <div className="modal">
                 <div className="modal-box">
-                    <h2 className="font-bold text-center text-lg">Delete Your Profile</h2>
-                    <p className="text-sm text-gray-500 mt-2 text-center">
-                       Type <strong>delete</strong> to confirm account deletion.
-                    </p>
+                    <h2 className="font-bold text-lg">Enter Your Input</h2>
                     <input
                         type="text"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
+                        ref={inputRef}
                         className="input input-bordered w-full mt-4"
-                        placeholder=""
+                        placeholder="Type something..."
                     />
                     <div className="modal-action">
                         <button className="btn" onClick={onClose}>
                             Cancel
                         </button>
-                        <button className="btn btn-primary" onClick={handleDeleteProfile}>
-                            Confirm
+                        <button className="btn btn-primary" onClick={onClose}>
+                            Next
                         </button>
                     </div>
                 </div>
@@ -66,7 +70,6 @@ const Modal = ({ isOpen, onClose }) => {
         </div>
     );
 };
-
 
   
   return (

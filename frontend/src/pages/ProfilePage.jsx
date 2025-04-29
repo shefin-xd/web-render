@@ -32,7 +32,6 @@ const ProfilePage = () => {
     };
 
 const Modal = ({ isOpen, onClose }) => {
-    
     if (!isOpen) return null;
 
     return (
@@ -40,9 +39,9 @@ const Modal = ({ isOpen, onClose }) => {
             <div className="modal modal-open">
                 <div className="modal-box">
                     <h2 className="font-bold text-center text-lg">Delete Your Profile</h2>
-                  <p className="text-sm text-gray-500 mt-2 text-center">
-                            Type <strong>delete</strong> to confirm account deletion.
-                        </p>
+                    <p className="text-sm text-gray-500 mt-2 text-center">
+                       Type <strong>delete</strong> to confirm account deletion.
+                    </p>
                     <input
                         type="text"
                         value={inputValue}
@@ -50,23 +49,13 @@ const Modal = ({ isOpen, onClose }) => {
                         className="input input-bordered w-full mt-4"
                         placeholder=""
                     />
-
-
-
-                  
                     <div className="modal-action">
                         <button className="btn" onClick={onClose}>
                             Cancel
                         </button>
-                        <button onClick={handleDeleteProfile}
-                          className={`btn btn-primary` ${ 
-                            inputValue !== "delete" ? "opacity-50 cursor-not-allowed" : ""
-                     }`}
-                      disabled={inputValue !== "delete"}
-                      >
-                            <Trash2 className="w-4 h-4" />
-                                {isDeletingProfile ? "Deleting..." : "Confirm"}
-                            </button>
+                        <button className="btn btn-primary" onClick={handleDeleteProfile}>
+                            Confirm
+                        </button>
                     </div>
                 </div>
             </div>

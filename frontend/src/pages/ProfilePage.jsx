@@ -109,6 +109,11 @@ const ProfilePage = () => {
             </div>
           </div>
           {/* delete profile button */}
+          <button className="btn btn-primary w-full">
+            <Trash2 className="w-5 h-5" />
+            Delete Profile
+
+            </button>
           <button
             onClick={() => setShowDeleteModal(true)}
             className="w-full p-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2"

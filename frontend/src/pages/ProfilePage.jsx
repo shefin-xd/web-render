@@ -26,49 +26,6 @@ const ProfilePage = () => {
     };
   };
 
-  const Modal = ({ isOpen, onClose, onConfirm }) => {
-    
-    const inputRef = useRef(null);
-
-    useEffect(() => {
-        if (isOpen) {
-            inputRef.current.focus(); // Focus the input when the modal opens
-        }
-    }, [isOpen]);
-
-    if (!isOpen) return null;
-
-    return (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="modal modal-open">
-                <div className="modal-box">
-                    <h2 className="font-bold text-lg">Enter Your Input</h2>
-                    <input
-                        type="text"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        ref={inputRef}
-                        className="input input-bordered w-full mt-4"
-                        placeholder="Type something..."
-                    />
-                    <div className="modal-action">
-                        <button className="btn" onClick={onClose}>
-                            Cancel
-                        </button>
-                        <button className="btn btn-primary" onClick={() => {
-                            onConfirm(inputValue); // Pass the input value to the confirm handler
-                            onClose();
-                        }}>
-                            Confirm
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div className="modal-overlay" onClick={onClose}></div>
-        </div>
-    );
-};
-
   const handleDeleteProfile = async () => {
     if (deleteInput !== "delete") {
       toast.error("You must type 'delete' to confirm account deletion.");
@@ -155,14 +112,21 @@ const ProfilePage = () => {
           </div>
           {/* delete profile button */}
 
-          <button className="btn" onClick={() => setIsModalOpen(true)}>
-                Open Modal
-            </button>
-            <Modal 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)} 
-                onConfirm={handleConfirm} 
-            />
+          <!-- You can open the modal using ID.showModal() method -->
+<button class="btn" onClick={() => setShowDeleteModal(true)}">open modal</button>
+{showDeleteModal && (
+  <div class="modal-box w-11/12 max-w-5xl">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+    )}
+
 
           <button
             onClick={() => setShowDeleteModal(true)}

@@ -148,7 +148,7 @@ const ProfilePage = () => {
             </p>
             <input
               type="text"
-              value={inputValue}
+              value={deleteInput}
               onChange={(e) => setInputValue(e.target.value)}
               className="input input-bordered w-full mt-4"
               placeholder=""
@@ -158,15 +158,15 @@ const ProfilePage = () => {
               Cancel
            </button>
            <button
-                                onClick={handleDeleteProfile}
-                                className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${
-                                    inputValue !== "delete" ? "opacity-50 cursor-not-allowed" : ""
-                                }`}
-                                disabled={inputValue !== "delete"}
-                            >
-                                <Trash2 className="w-4 h-4" />
-                                {isDeletingProfile ? "Deleting..." : "Confirm"}
-                            </button>
+              onClick={handleDeleteProfile}
+              className={`btn bg-red-600 text-white flex items-center w-full ${
+                deleteInput !== "delete" ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+             disabled={deleteInput !== "delete"}
+              >
+               <Trash2 className="w-4 h-4" />
+                {isDeletingProfile ? "Deleting..." : "Confirm"}
+              </button>
             
          </div>
       </div>

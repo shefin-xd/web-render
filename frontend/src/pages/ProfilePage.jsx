@@ -138,7 +138,28 @@ const ProfilePage = () => {
         </div>
       </div>
 
-            {/* DELETE PROFILE MODAL */}
+      {showDeleteModal && (
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div className="modal modal-open">
+      <div className="modal-box">
+                    <h2 className="font-bold text-center text-lg">Delete Your Profile</h2>
+                    <p className="text-sm text-gray-500 mt-2 text-center">
+                       Type <strong>delete</strong> to confirm account deletion.
+                    </p>
+    <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click the button below to close</p>
+    <div className="modal-action">
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+        </div>
+        </div>
+      )}
+
+            {/* DELETE PROFILE MODAL
             {showDeleteModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={(e) => e.stopPropagation()}>
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
@@ -175,6 +196,7 @@ const ProfilePage = () => {
                     </div>
                 </div>
             )}
+             */}
     </div>
   );
 };

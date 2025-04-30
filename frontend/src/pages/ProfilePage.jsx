@@ -116,8 +116,8 @@ const ProfilePage = () => {
 <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button>
 <dialog id="my_modal_1" className="modal">
   <div className="modal-box">
-    <h3 className="font-bold text-lg">Hello!</h3>
-    <p className="py-4">Press ESC key or click the button below to close</p>
+    <h3 className="font-bold text-center text-lg">Delete Your Profile</h3>
+    <p className="text-sm text-gray-500 mt-2 text-center">Type <strong>delete</strong> to confirm account deletion</p>
     <div className="modal-action">
       <form method="dialog">
         {/* if there is a button in form, it will close the modal */}
@@ -140,24 +140,28 @@ const ProfilePage = () => {
 
       {showDeleteModal && (
       <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="modal modal-open">
-      <div className="modal-box">
-                    <h2 className="font-bold text-center text-lg">Delete Your Profile</h2>
-                    <p className="text-sm text-gray-500 mt-2 text-center">
-                       Type <strong>delete</strong> to confirm account deletion.
-                    </p>
-    <h3 className="font-bold text-lg">Hello!</h3>
-    <p className="py-4">Press ESC key or click the button below to close</p>
-    <div className="modal-action">
-      <form method="dialog">
-        {/* if there is a button in form, it will close the modal */}
-        <button className="btn">Close</button>
-      </form>
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <h2 className="font-bold text-center text-lg">Delete Your Profile</h2>
+            <p className="text-sm text-gray-500 mt-2 text-center">
+              Type <strong>delete</strong> to confirm account deletion.
+            </p>
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              className="input input-bordered w-full mt-4"
+              placeholder=""
+           />
+          <div className="modal-action">
+            <button className="btn" onClick={() => setShowDeleteModal(false)}>
+              Cancel
+           </button>
+         </div>
+      </div>
     </div>
   </div>
-        </div>
-        </div>
-      )}
+  )}
 
             {/* DELETE PROFILE MODAL
             {showDeleteModal && (

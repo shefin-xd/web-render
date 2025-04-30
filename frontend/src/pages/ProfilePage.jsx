@@ -4,8 +4,9 @@ import { Camera, Mail, User, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 
 const ProfilePage = () => {
-  const { authUser, isUpdatingProfile, updateProfile, deleteProfile } = useAuthStore();
+  const { authUser, isUpdatingProfile, isDeletingProfile, updateProfile, deleteProfile } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteInput, setDeleteInput] = useState("");
 
   const handleDeleteProfile = async () => {
@@ -105,6 +106,13 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
+          <button
+            onClick={() => setShowDeleteModal(true)}
+            className="btn bg-red-600 text-white flex items-center w-full"
+          >
+            <Trash2 className="w-5 h-5" />
+              Delete Profile
+          </button>
         </div>
       </div>
     </div>

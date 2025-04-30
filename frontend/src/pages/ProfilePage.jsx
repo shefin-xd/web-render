@@ -134,10 +134,11 @@ const ProfilePage = () => {
                         />
                         <div className="btn">
                             <button
-                                onClick={() => setShowDeleteModal(false)}
-                            >
-                                Cancel
-                            </button>
+                                 onClick={() => setShowDeleteModal(false)}
+                                 className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition flex items-center gap-1"
+                             >
+                               Cancel
+                             </button>
                             <button
                                 onClick={handleDeleteProfile}
                                 className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${
@@ -146,7 +147,7 @@ const ProfilePage = () => {
                                 disabled={deleteInput !== "delete"}
                             >
                                 <Trash2 className="w-4 h-4" />
-                                {isDeleting ? "Deleting..." : "Confirm"}
+                                {isDeletingProfile ? "Deleting..." : "Confirm"}
                             </button>
                         </div>
                         </div>

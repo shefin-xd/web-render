@@ -123,8 +123,8 @@ const ProfilePage = () => {
         </div>
       </div>
 
-
-{showDeleteModal && (
+{/* DELETE PROFILE MODAL */}
+            {showDeleteModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={(e) => e.stopPropagation()}>
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
                         <h2 className="text-lg font-semibold text-center text-red-600">Confirm Profile Deletion</h2>
@@ -136,7 +136,7 @@ const ProfilePage = () => {
                             className="w-full p-2 border rounded mt-3"
                             placeholder="Type 'delete' here..."
                             value={inputValue}
-                            onChange={(e) => setDeleteInput(e.target.value)}
+                            onChange={(e) => setInputValue(e.target.value)}
                         />
                         <div className="flex justify-between mt-4">
                             <button
@@ -160,7 +160,6 @@ const ProfilePage = () => {
                     </div>
                 </div>
             )}
-      
 
               {/* Open the modal using document.getElementById('ID').showModal() method */}
 

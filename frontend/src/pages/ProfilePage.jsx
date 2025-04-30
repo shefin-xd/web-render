@@ -1,10 +1,19 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Camera, Mail, User } from "lucide-react";
+import { Camera, Mail, User, Trash2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const ProfilePage = () => {
-  const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
+  const { authUser, isUpdatingProfile, updateProfile, deleteProfile } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
+  const [deleteInput, setDeleteInput] = useState("");
+
+  const handleDeleteProfile = async () => {
+  if (deleteInput.toLowerCase() !== "delete") {
+    return toast.error("You must type 'delete' to confirm account deletion");
+  }
+    await deleteProfile();
+  };
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];

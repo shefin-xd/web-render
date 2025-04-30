@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-
+import { useState } from 'react';
 import { useAuthStore } from "../store/useAuthStore";
 import { Camera, Mail, User, Trash2, XCircle } from "lucide-react";
 
@@ -34,43 +33,6 @@ const ProfilePage = () => {
     }
     await deleteProfile();
     };
-
-
-
-const Modal = ({ isOpen, onClose }) => {
-    const inputRef = useRef(null);
-
-    useEffect(() => {
-        if (isOpen) {
-            inputRef.current.focus();
-        }
-    }, [isOpen]);
-
-    return (
-        <div className={`fixed inset-0 flex items-center justify-center z-50 ${isOpen ? 'modal-open' : ''}`}>
-            <div className="modal">
-                <div className="modal-box">
-                    <h2 className="font-bold text-lg">Enter Your Input</h2>
-                    <input
-                        type="text"
-                        ref={inputRef}
-                        className="input input-bordered w-full mt-4"
-                        placeholder="Type something..."
-                    />
-                    <div className="modal-action">
-                        <button className="btn" onClick={onClose}>
-                            Cancel
-                        </button>
-                        <button className="btn btn-primary" onClick={onClose}>
-                            Next
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div className="modal-overlay" onClick={onClose}></div>
-        </div>
-    );
-};
 
   
   return (
@@ -150,12 +112,6 @@ const Modal = ({ isOpen, onClose }) => {
           </div>
           {/* delete profile button */}
 
-          <button className="btn bg-red-600 text-white flex items-center w-full" onClick={() => setIsModalOpen(true)}>
-                <Trash2 className="w-5 h-5" />
-              Delete Profile
-            </button>
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-
              <button
                         onClick={() => setShowDeleteModal(true)}
                         className="btn bg-red-600 text-white flex items-center w-full"
@@ -179,7 +135,7 @@ const Modal = ({ isOpen, onClose }) => {
                             type="text"
                             className="w-full p-2 border rounded mt-3"
                             placeholder="Type 'delete' here..."
-                            value={deleteInput}
+                            value={inputValue}
                             onChange={(e) => setDeleteInput(e.target.value)}
                         />
                         <div className="flex justify-between mt-4">
@@ -195,7 +151,7 @@ const Modal = ({ isOpen, onClose }) => {
                                 className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${
                                     deleteInput !== "delete" ? "opacity-50 cursor-not-allowed" : ""
                                 }`}
-                                disabled={deleteInput !== "delete"}
+                                disabled={inputValue !== "delete"}
                             >
                                 <Trash2 className="w-4 h-4" />
                                 {isProfileDeleting ? "Deleting..." : "Confirm"}

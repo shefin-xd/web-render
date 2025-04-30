@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuthStore } from "../store/useAuthStore";
 import { Camera, Mail, User, Trash2, XCircle } from "lucide-react";
 
@@ -25,6 +25,49 @@ const ProfilePage = () => {
       await updateProfile({ profilePic: base64Image });
     };
   };
+
+  const Modal = ({ isOpen, onClose, onConfirm }) => {
+    
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (isOpen) {
+            inputRef.current.focus(); // Focus the input when the modal opens
+        }
+    }, [isOpen]);
+
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="modal modal-open">
+                <div className="modal-box">
+                    <h2 className="font-bold text-lg">Enter Your Input</h2>
+                    <input
+                        type="text"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        ref={inputRef}
+                        className="input input-bordered w-full mt-4"
+                        placeholder="Type something..."
+                    />
+                    <div className="modal-action">
+                        <button className="btn" onClick={onClose}>
+                            Cancel
+                        </button>
+                        <button className="btn btn-primary" onClick={() => {
+                            onConfirm(inputValue); // Pass the input value to the confirm handler
+                            onClose();
+                        }}>
+                            Confirm
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div className="modal-overlay" onClick={onClose}></div>
+        </div>
+    );
+};
 
   const handleDeleteProfile = async () => {
     if (deleteInput !== "delete") {
@@ -111,6 +154,15 @@ const ProfilePage = () => {
             </div>
           </div>
           {/* delete profile button */}
+
+          <button className="btn" onClick={() => setIsModalOpen(true)}>
+                Open Modal
+            </button>
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                onConfirm={handleConfirm} 
+            />
 
           <button
             onClick={() => setShowDeleteModal(true)}

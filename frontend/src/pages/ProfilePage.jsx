@@ -127,15 +127,14 @@ const ProfilePage = () => {
                         </p>
                         <input
                             type="text"
-                            className="w-full p-2 border rounded mt-3"
+                            className="input input-bordered w-full pl-10"
                             placeholder=""
                             value={deleteInput}
                             onChange={(e) => setDeleteInput(e.target.value)}
                         />
-                        <div className="flex justify-between mt-4">
+                        <div className="btn">
                             <button
                                 onClick={() => setShowDeleteModal(false)}
-                                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition flex items-center gap-1"
                             >
                                 Cancel
                             </button>
@@ -147,7 +146,7 @@ const ProfilePage = () => {
                                 disabled={deleteInput !== "delete"}
                             >
                                 <Trash2 className="w-4 h-4" />
-                                {isDeletingProfile ? "Deleting..." : "Confirm"}
+                                {isDeleting ? "Deleting..." : "Confirm"}
                             </button>
                         </div>
                         </div>

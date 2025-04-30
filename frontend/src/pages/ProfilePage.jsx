@@ -119,7 +119,8 @@ const ProfilePage = () => {
             <Trash2 className="w-5 h-5" />
               Delete Profile
           </button>
-                    
+        </div>
+      </div>
 
             {/* DELETE PROFILE MODAL */}
             {showDeleteModal && (
@@ -158,8 +159,6 @@ const ProfilePage = () => {
                     </div>
                 </div>
             )}
-
-              
     </div>
   );
 };

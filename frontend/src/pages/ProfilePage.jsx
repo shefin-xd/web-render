@@ -113,7 +113,7 @@ const ProfilePage = () => {
           {/* delete profile button */}
 
              <button
-                        onClick={() => setShowDeleteModal(true)}
+                        onClick={() => setIsModalOpen(true)}
                         className="btn bg-red-600 text-white flex items-center w-full"
                     >
                         <Trash2 className="w-5 h-5" />
@@ -124,7 +124,7 @@ const ProfilePage = () => {
       </div>
 
 {/* DELETE PROFILE MODAL */}
-            {showDeleteModal && (
+            {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={(e) => e.stopPropagation()}>
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
                         <h2 className="text-lg font-semibold text-center text-red-600">Confirm Profile Deletion</h2>
@@ -140,7 +140,7 @@ const ProfilePage = () => {
                         />
                         <div className="flex justify-between mt-4">
                             <button
-                                onClick={() => setShowDeleteModal(false)}
+                                onClick={() => setIsModalOpen(false)}
                                 className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition flex items-center gap-1"
                             >
                                 <XCircle className="w-4 h-4" />
@@ -149,7 +149,7 @@ const ProfilePage = () => {
                             <button
                                 onClick={handleDeleteProfile}
                                 className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${
-                                    deleteInput !== "delete" ? "opacity-50 cursor-not-allowed" : ""
+                                    inputValue !== "delete" ? "opacity-50 cursor-not-allowed" : ""
                                 }`}
                                 disabled={inputValue !== "delete"}
                             >

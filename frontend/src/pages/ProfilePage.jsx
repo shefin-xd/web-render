@@ -127,7 +127,7 @@ const ProfilePage = () => {
                         </p>
                         <input
                             type="text"
-                            className="input input-bordered w-full pl-10"
+                            className="input input-bordered w-full mt-4"
                             placeholder=""
                             value={deleteInput}
                             onChange={(e) => setDeleteInput(e.target.value)}

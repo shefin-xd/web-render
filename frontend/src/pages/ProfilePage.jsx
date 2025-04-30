@@ -157,15 +157,16 @@ const ProfilePage = () => {
             <button className="btn" onClick={() => setShowDeleteModal(false)}>
               Cancel
            </button>
-           <button onClick={handleDeleteProfile} className="btn btn-primary ${
-             inputValue !== "delete" ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-             disabled={deleteInput !== "delete"} >
-            Confirm
-            
-                {isDeletingProfile ? "Deleting..." : "Confirm"}
-          
-           </button>
+           <button
+                                onClick={handleDeleteProfile}
+                                className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${
+                                    inputValue !== "delete" ? "opacity-50 cursor-not-allowed" : ""
+                                }`}
+                                disabled={inputValue !== "delete"}
+                            >
+                                <Trash2 className="w-4 h-4" />
+                                {isDeletingProfile ? "Deleting..." : "Confirm"}
+                            </button>
             
          </div>
       </div>

@@ -120,52 +120,21 @@ const ProfilePage = () => {
                         Delete Profile
                     </button>
 
-        </div>
-      </div>
+        {/* DELETE PROFILE BUTTON */}
+                    <button
+                        onClick={() => setShowDeleteModal(true)}
+                        className="w-full p-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2"
+                    >
+                        <Trash2 className="w-5 h-5" />
+                        Delete Profile
+                    </button>
 
-{/* DELETE PROFILE MODAL */}
-            {isModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={(e) => e.stopPropagation()}>
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                        <h2 className="text-lg font-semibold text-center text-red-600">Confirm Profile Deletion</h2>
-                        <p className="text-sm text-gray-500 mt-2 text-center">
-                            Type <strong>delete</strong> to confirm account deletion.
-                        </p>
-                        <input
-                            type="text"
-                            className="w-full p-2 border rounded mt-3"
-                            placeholder="Type 'delete' here..."
-                            value={inputValue}
-                            onChange={(e) => setInputValue(e.target.value)}
-                        />
-                        <div className="flex justify-between mt-4">
-                            <button
-                                onClick={() => setIsModalOpen(false)}
-                                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition flex items-center gap-1"
-                            >
-                                <XCircle className="w-4 h-4" />
-                                Cancel
-                            </button>
-                            <button
-                                onClick={handleDeleteProfile}
-                                className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${
-                                    inputValue !== "delete" ? "opacity-50 cursor-not-allowed" : ""
-                                }`}
-                                disabled={inputValue !== "delete"}
-                            >
-                                <Trash2 className="w-4 h-4" />
-                                {isProfileDeleting ? "Deleting..." : "Confirm"}
-                            </button>
-                        </div>
-                    </div>
                 </div>
-            )}
+            </div>
+                    
 
-              {/* Open the modal using document.getElementById('ID').showModal() method */}
-
-{/*            
-            {showDeleteMenu && (
-            <div className="fixed inset-0 flex items-center justify-center z-50">
+            {/* DELETE PROFILE MODAL */}
+            {showDeleteModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={(e) => e.stopPropagation()}>
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
                         <h2 className="text-lg font-semibold text-center text-red-600">Confirm Profile Deletion</h2>
@@ -181,7 +150,7 @@ const ProfilePage = () => {
                         />
                         <div className="flex justify-between mt-4">
                             <button
-                                onClick={() => setShowDeleteMenu(false)}
+                                onClick={() => setShowDeleteModal(false)}
                                 className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition flex items-center gap-1"
                             >
                                 <XCircle className="w-4 h-4" />
@@ -201,13 +170,6 @@ const ProfilePage = () => {
                     </div>
                 </div>
             )}
-        
-*/}
-
-
-      
-
-
 
               
     </div>

@@ -159,7 +159,7 @@ const ProfilePage = () => {
            </button>
            <button
               onClick={handleDeleteProfile}
-              className={`btn bg-red-600 text-white flex items-center w-full ${
+              className={`btn bg-red-600 text-white flex items-center ${
                 deleteInput !== "delete" ? "opacity-50 cursor-not-allowed" : ""
               }`}
              disabled={deleteInput !== "delete"}

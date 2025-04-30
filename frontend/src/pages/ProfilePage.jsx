@@ -115,6 +115,47 @@ const ProfilePage = () => {
           </button>
         </div>
       </div>
+
+              
+{showDeleteModal && (
+                <div className="fixed inset-0 flex items-center justify-center z-50" >
+                     <div className="modal modal-open">
+                       <div className="modal-box">
+                        <h2 className="font-bold text-center text-lg">Delete Your Profile</h2>
+                        <p className="text-sm text-gray-500 mt-2 text-center">
+                            Type <strong>delete</strong> to confirm account deletion
+                        </p>
+                        <input
+                            type="text"
+                            className="w-full p-2 border rounded mt-3"
+                            placeholder=""
+                            value={deleteInput}
+                            onChange={(e) => setDeleteInput(e.target.value)}
+                        />
+                        <div className="flex justify-between mt-4">
+                            <button
+                                onClick={() => setShowDeleteModal(false)}
+                                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition flex items-center gap-1"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={handleDeleteProfile}
+                                className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${
+                                    deleteInput !== "delete" ? "opacity-50 cursor-not-allowed" : ""
+                                }`}
+                                disabled={deleteInput !== "delete"}
+                            >
+                                <Trash2 className="w-4 h-4" />
+                                {isDeletingProfile ? "Deleting..." : "Confirm"}
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+      
+
     </div>
   );
 };

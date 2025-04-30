@@ -157,6 +157,16 @@ const ProfilePage = () => {
             <button className="btn" onClick={() => setShowDeleteModal(false)}>
               Cancel
            </button>
+           <button onClick={handleDeleteProfile} className="btn btn-primary ${
+             inputValue !== "delete" ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+             disabled={deleteInput !== "delete"} >
+            Confirm
+            
+                {isDeletingProfile ? "Deleting..." : "Confirm"}
+          
+           </button>
+            
          </div>
       </div>
     </div>

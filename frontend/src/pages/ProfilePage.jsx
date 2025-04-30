@@ -27,7 +27,7 @@ const ProfilePage = () => {
   };
 
   const handleDeleteProfile = async () => {
-    if (inputValue !== "delete") {
+    if (deleteInput !== "delete") {
       toast.error("You must type 'delete' to confirm account deletion.");
       return;
     }
@@ -112,25 +112,13 @@ const ProfilePage = () => {
           </div>
           {/* delete profile button */}
 
-             <button
-                        onClick={() => setIsModalOpen(true)}
-                        className="btn bg-red-600 text-white flex items-center w-full"
-                    >
-                        <Trash2 className="w-5 h-5" />
-                        Delete Profile
-                    </button>
-
-        {/* DELETE PROFILE BUTTON */}
-                    <button
-                        onClick={() => setShowDeleteModal(true)}
-                        className="w-full p-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2"
-                    >
-                        <Trash2 className="w-5 h-5" />
-                        Delete Profile
-                    </button>
-
-                </div>
-            </div>
+          <button
+            onClick={() => setShowDeleteModal(true)}
+            className="btn bg-red-600 text-white flex items-center w-full"
+          >
+            <Trash2 className="w-5 h-5" />
+              Delete Profile
+          </button>
                     
 
             {/* DELETE PROFILE MODAL */}

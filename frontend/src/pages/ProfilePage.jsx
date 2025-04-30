@@ -133,10 +133,7 @@ const ProfilePage = () => {
                             onChange={(e) => setDeleteInput(e.target.value)}
                         />
                         <div className="btn">
-                            <button
-                                 onClick={() => setShowDeleteModal(false)}
-                                 className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition flex items-center gap-1"
-                             >
+                            <button onClick={() => setShowDeleteModal(false)} >
                                Cancel
                              </button>
                             <button

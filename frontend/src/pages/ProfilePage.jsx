@@ -137,7 +137,9 @@ const ProfilePage = () => {
                               className="btn">
                                Cancel
                              </button>
-                          <button className="btn btn-primary" onClick={handleDeleteProfile} disabled={isDeletingProfile}>
+                          <button className= {`btn btn-primary ${
+                                    deleteInput.toLowerCase().trim() !== "delete" ? "opacity-50 cursor-not-allowed" : ""
+                                }`} onClick={handleDeleteProfile} disabled={isDeletingProfile}>
                         {isDeletingProfile ? (
                             <>
                                 <Loader2 className="size-5 animate-spin" />

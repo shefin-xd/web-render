@@ -1,10 +1,25 @@
 import { X } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useChatStore } from "../store/useChatStore";
+import { formatTimeForDisplay } from "../lib/utils";
+import { useEffect } from "react";
 
 const ChatHeader = () => {
   const { selectedUser, setSelectedUser } = useChatStore();
-  const { onlineUsers } = useAuthStore();
+  const { onlineUsers, lastSeenUsers, getLastSeen } = useAuthStore();
+
+  useEffect(() => {
+    if (selectedUser && !onlineUsers.includes(selectedUser._id) && !lastSeenUsers[selectedUser._id]) {
+      getLastSeen(selectedUser._id);
+    }
+  }, [selectedUser, onlineUsers]);
+
+  const isOnline = selectedUser ? onlineUsers.includes(selectedUser._id) : false;
+  const lastSeen = lastSeenUsers[selectedUser._id];
+
+  let statusText = isOnline 
+    ? "Online"
+    : (lastSeen ? `Last seen: ${formatTimeForDisplay(lastSeen, "lastSeen")}` : "Offline");
 
   return (
     <div className="p-2.5 border-b border-base-300">
@@ -16,16 +31,14 @@ const ChatHeader = () => {
               <img src={selectedUser.profilePic || "/avatar.png"} alt={selectedUser.fullName} />
             </div>
           </div>
-
           {/* User info */}
           <div>
             <h3 className="font-medium">{selectedUser.fullName}</h3>
             <p className="text-sm text-base-content/70">
-              {onlineUsers.includes(selectedUser._id) ? "Online" : "Offline"}
+              {statusText}
             </p>
           </div>
         </div>
-
         {/* Close button */}
         <button onClick={() => setSelectedUser(null)}>
           <X />

@@ -10,7 +10,7 @@ const ProfilePage = () => {
   const [deleteInput, setDeleteInput] = useState("");
 
   const handleDeleteProfile = async () => {
-  if (deleteInput.toLowerCase() !== "delete") {
+  if (deleteInput.toLowerCase().trim() !== "delete") {
     return toast.error("You must type 'delete' to confirm account deletion");
   }
     await deleteProfile();
@@ -132,7 +132,7 @@ const ProfilePage = () => {
                             value={deleteInput}
                             onChange={(e) => setDeleteInput(e.target.value)}
                         />
-                        <div className="flex justify-between mt-4">
+                        <div className="modal-action">
                             <button onClick={() => setShowDeleteModal(false)}
                               className="btn">
                                Cancel
@@ -140,9 +140,9 @@ const ProfilePage = () => {
                             <button
                                 onClick={handleDeleteProfile}
                                 className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${
-                                    deleteInput !== "delete" ? "opacity-50 cursor-not-allowed" : ""
+                                    deleteInput.toLowerCase().trim() !== "delete" ? "opacity-50 cursor-not-allowed" : ""
                                 }`}
-                                disabled={deleteInput !== "delete"}
+                                disabled={deleteInput.toLowerCase().trim() !== "delete"}
                             >
                                 <Trash2 className="w-4 h-4" />
                                 {isDeletingProfile ? "Deleting..." : "Confirm"}

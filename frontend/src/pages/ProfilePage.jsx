@@ -132,8 +132,9 @@ const ProfilePage = () => {
                             value={deleteInput}
                             onChange={(e) => setDeleteInput(e.target.value)}
                         />
-                        <div className="btn">
-                            <button onClick={() => setShowDeleteModal(false)} >
+                        <div className="flex justify-between mt-4">
+                            <button onClick={() => setShowDeleteModal(false)}
+                              className="btn">
                                Cancel
                              </button>
                             <button

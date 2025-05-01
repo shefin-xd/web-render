@@ -137,7 +137,7 @@ const ProfilePage = () => {
                               className="btn">
                                Cancel
                              </button>
-                          <button className="btn btn-primary" disabled={isDeletingProfile}>
+                          <button className="btn btn-primary" onClick={handleDeleteProfile} disabled={isDeletingProfile}>
                         {isDeletingProfile ? (
                             <>
                                 <Loader2 className="size-5 animate-spin" />

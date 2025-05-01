@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Camera, Mail, User, Trash2 } from "lucide-react";
+import { Camera, Mail, User, Trash2, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 
 const ProfilePage = () => {
@@ -137,6 +137,16 @@ const ProfilePage = () => {
                               className="btn">
                                Cancel
                              </button>
+                          <button className="btn btn-primary" disabled={isDeletingProfile}>
+                        {isDeletingProfile ? (
+                            <>
+                                <Loader2 className="size-5 animate-spin" />
+                                Loading...
+                            </>
+                            ) : (
+                                "Confirm"
+                            )}
+                    </button>
                             <button
                                 onClick={handleDeleteProfile}
                                 className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${

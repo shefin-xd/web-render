@@ -43,7 +43,7 @@ const Sidebar = () => {
 
         <input
           type="text"
-          placeholder="Search users..."
+          placeholder="Search User"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="input input-bordered w-full mt-4"

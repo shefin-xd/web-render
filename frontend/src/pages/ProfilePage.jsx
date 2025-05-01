@@ -139,7 +139,7 @@ const ProfilePage = () => {
                              </button>
                           <button className= {`btn btn-primary ${
                                     deleteInput.toLowerCase().trim() !== "delete" ? "opacity-50 cursor-not-allowed" : ""
-                                }`} onClick={handleDeleteProfile} disabled={isDeletingProfile}>
+                                }`} onClick={handleDeleteProfile} disabled={deleteInput.toLowerCase().trim() !== "delete"}>
                         {isDeletingProfile ? (
                             <>
                                 <Loader2 className="size-5 animate-spin" />
@@ -149,17 +149,7 @@ const ProfilePage = () => {
                                 "Confirm"
                             )}
                     </button>
-                            <button
-                                onClick={handleDeleteProfile}
-                                className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-1 ${
-                                    deleteInput.toLowerCase().trim() !== "delete" ? "opacity-50 cursor-not-allowed" : ""
-                                }`}
-                                disabled={deleteInput.toLowerCase().trim() !== "delete"}
-                            >
-                                <Trash2 className="w-4 h-4" />
-                                {isDeletingProfile ? "Deleting..." : "Confirm"}
-                            </button>
-                        </div>
+                          </div>
                         </div>
                     </div>
                 </div>

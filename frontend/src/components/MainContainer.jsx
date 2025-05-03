@@ -1,4 +1,4 @@
-import { MessageSquare, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 
 const MainContainer = () => {
   return (
@@ -18,9 +18,6 @@ const MainContainer = () => {
 
         {/* Welcome Text */}
         <h2 className="text-2xl font-bold">Welcome!</h2>
-        <p className="text-base-content/60">
-          Select a conversation from the sidebar to start chatting
-        </p>
       </div>
     </div>
   );

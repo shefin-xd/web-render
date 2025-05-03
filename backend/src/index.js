@@ -25,8 +25,6 @@ app.use(
   })
 );
 
-connectDB();
-
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
@@ -34,7 +32,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Hey" });
 });
 
-
-server.listen(PORT, () => {
-  console.log("server is running on PORT:" + PORT);
+connectDB().then(()=>{
+    server.listen(PORT, () => {
+      console.log("server is running on PORT:" + PORT);
+    });
 });

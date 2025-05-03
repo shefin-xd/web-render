@@ -19,7 +19,7 @@ const MainContainer = () => {
         </div>
 
         {/* Welcome Text */}
-        <h2 className="text-2xl font-bold">Welcome {authUser?.fullName || ""}</h2>
+        <h2 className="text-2xl font-bold">Welcome {authUser?.fullName}</h2>
       </div>
     </div>
   );

@@ -26,4 +26,4 @@ const DashboardPage = () => {
   );
 };
 
-export default MainContainer;
+export default DashboardPage;

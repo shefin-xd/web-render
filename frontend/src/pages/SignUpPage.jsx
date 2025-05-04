@@ -145,7 +145,7 @@ const SignUpPage = () => {
       {/* right side */}
 
       <AuthImagePattern
-        title=""
+        title="Create Account"
         subtitle=""
       />
     </div>

@@ -1,7 +1,7 @@
 import { Zap } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 
-const MainContainer = () => {
+const DashboardPage = () => {
   const { authUser } = useAuthStore();
 
   return (

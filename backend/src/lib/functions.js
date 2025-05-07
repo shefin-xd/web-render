@@ -35,3 +35,18 @@ export const getBuffer = async (url, options = {}) => {
     console.log("error in update getBuffer:", error.message);
   }
 };
+
+export const runtime = () => {
+  const duration = process.uptime();
+  const seconds = Math.floor(duration % 60);
+  const minutes = Math.floor((duration / 60) % 60);
+  const hours = Math.floor((duration / (60 * 60)) % 24);
+
+  const formattedTime = `${hours
+    .toString()
+    .padStart(2, "0")}:${minutes
+    .toString()
+    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+  return formattedTime;
+}

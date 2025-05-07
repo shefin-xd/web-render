@@ -16,7 +16,7 @@ const Sidebar = () => {
 
   // Local search: Only names that START with the search query
   const searchedUsers = users.filter(user =>
-    user.fullName.toLowerCase().startsWith(searchQuery.toLowerCase())
+    user.name.toLowerCase().startsWith(searchQuery.toLowerCase())
   );
 
   // Sort users: Online users first, then offline users
@@ -94,7 +94,7 @@ const Sidebar = () => {
 
             {/* User info - only visible on larger screens */}
             <div className="hidden lg:block text-left min-w-0">
-              <div className="font-medium truncate">{user.fullName}</div>
+              <div className="font-medium truncate">{user.name}</div>
               <div className="text-sm text-zinc-400">
                 {onlineUsers.includes(user._id) ? "Online" : "Offline"}
               </div>
@@ -131,7 +131,7 @@ const Sidebar = () => {
             </div>
             {/* User info - only visible on larger screens */}
             <div className="hidden lg:block text-left min-w-0">
-              <div className="font-medium truncate">{user.fullName}</div>
+              <div className="font-medium truncate">{user.name}</div>
               <div className="text-sm text-zinc-400">
                 {onlineUsers.includes(user._id) ? "Online" : "Offline"}
               </div>
@@ -148,4 +148,3 @@ const Sidebar = () => {
   );
 };
 export default Sidebar;
-

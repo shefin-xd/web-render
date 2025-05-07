@@ -29,7 +29,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Hey" });
+  res.json({
+    message: "Hey Guys",
+    runtime: process.uptime(),
+  });
 });
 
 connectDB().then(()=>{

@@ -3,10 +3,10 @@ import User from "../models/user.model.js";
 import cloudinary from "../lib/cloudinary.js";
 
 export const signup = async (req, res) => {
-  const { fullName, email, password } = req.body;
+  const { name, email, password } = req.body;
   try {
     
-    if (!fullName || !email || !password) {
+    if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -26,8 +26,7 @@ export const signup = async (req, res) => {
     }
 
     const newUser = new User({
-      name: fullName,
-      fullName,
+      name,
       email,
       password,
     });
@@ -38,8 +37,7 @@ export const signup = async (req, res) => {
 
       res.status(201).json({
         _id: newUser._id,
-        name: newUser.fullName,
-        fullName: newUser.fullName,
+        name: newUser.name,
         email: newUser.email,
         profilePic: newUser.profilePic,
         createdAt: newUser.createdAt,
@@ -75,8 +73,7 @@ export const login = async (req, res) => {
 
     res.status(200).json({
       _id: user._id,
-      name: user.fullName,
-      fullName: user.fullName,
+      name: user.name,
       email: user.email,
       profilePic: user.profilePic,
       createdAt: user.createdAt,

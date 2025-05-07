@@ -11,6 +11,8 @@ import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import { app, server } from "./lib/socket.js";
 
+import { runtime } from "./lib/functions.js";
+
 dotenv.config();
 
 const PORT = process.env.PORT;
@@ -31,7 +33,7 @@ app.use("/api/messages", messageRoutes);
 app.get("/", (req, res) => {
   res.json({
     message: "Hey Guys",
-    runtime: process.uptime(),
+    runtime
   });
 });
 

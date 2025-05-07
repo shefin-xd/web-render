@@ -36,7 +36,7 @@ export const getBuffer = async (url, options = {}) => {
   }
 };
 
-export const runtime = () => {
+export const getRunTime = () => {
   const duration = process.uptime();
   const seconds = Math.floor(duration % 60);
   const minutes = Math.floor((duration / 60) % 60);

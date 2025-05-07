@@ -33,7 +33,7 @@ app.use("/api/messages", messageRoutes);
 app.get("/", (req, res) => {
   res.json({
     message: "Hey Guys",
-    runtime,
+    runtime: runtime,
   });
 });
 

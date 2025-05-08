@@ -1,5 +1,3 @@
-import { useUserStore } from "../store/useUserStore";
-
 import UsersList from "../components/UsersList";
 
 const AdminPage = () => {

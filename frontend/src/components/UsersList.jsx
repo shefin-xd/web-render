@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Trash2, Loader2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
-
 
 const AdminIcon = () => (
   <svg
@@ -11,17 +10,6 @@ const AdminIcon = () => (
     aria-hidden="true"
   >
     <path d="M10 0L3 4v6c0 5 4 9 7 10 3-1 7-5 7-10V4l-7-4zM9 7h2v4H9V7zm1-4a1 1 0 110 2 1 1 0 010-2z" />
-  </svg>
-);
-
-const DeleteIcon = () => (
-  <svg
-    className="w-5 h-5 text-red-600"
-    fill="currentColor"
-    viewBox="0 0 20 20"
-    aria-hidden="true"
-  >
-    <path d="M6 2a1 1 0 00-1 1v1H2a1 1 0 000 2h1v12a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 000-2h-3V3a1 1 0 00-1-1H6zm0 2h8v1H6V4zm1 3h6v12H7V7z" />
   </svg>
 );
 
@@ -51,7 +39,11 @@ const UsersList = () => {
   ]);
 
   const handleDelete = (id) => {
-    setUsers(users.filter(user => user.id !== id));
+    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+    if (confirmDelete) {
+      setUsers(users.filter(user => user.id !== id));
+      toast.success("User  deleted successfully!");
+    }
   };
 
   const handleToggleStar = (id) => {
@@ -60,9 +52,7 @@ const UsersList = () => {
 
   return (
     <div className="w-screen h-screen bg-base-200 flex flex-col p-6">
-      <h2 className="text-3xl font-bold text-primary text-center mb-8">
-        Users List
-      </h2>
+      <h2 className="text-3xl font-bold text-primary text-center mb-8">Users List</h2>
 
       <div className="overflow-auto bg-base-100 rounded-lg shadow-md p-4 flex-grow">
         {users.length === 0 ? (
@@ -72,10 +62,7 @@ const UsersList = () => {
         ) : (
           <ul className="space-y-4">
             {users.map(user => (
-              <li
-                key={user.id}
-                className="flex justify-between items-center p-4 rounded-md border border-base-300"
-              >
+              <li key={user.id} className="flex justify-between items-center p-4 rounded-md border border-base-300">
                 <div className="flex items-center space-x-4">
                   <div className="relative w-12 h-12">
                     <img
@@ -106,8 +93,6 @@ const UsersList = () => {
                     <Trash2 className="w-5 h-5" />
                   </button>
 
-           
-
                   <label className="label cursor-pointer m-0 p-0">
                     <input
                       type="checkbox"
@@ -128,3 +113,4 @@ const UsersList = () => {
 };
 
 export default UsersList;
+

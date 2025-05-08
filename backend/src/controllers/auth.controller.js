@@ -40,6 +40,7 @@ export const signup = async (req, res) => {
         name: newUser.name,
         email: newUser.email,
         profilePic: newUser.profilePic,
+        role: newUser.role,
         createdAt: newUser.createdAt,
       });
     } else {
@@ -76,6 +77,7 @@ export const login = async (req, res) => {
       name: user.name,
       email: user.email,
       profilePic: user.profilePic,
+      role: user.role,
       createdAt: user.createdAt,
     });
   } catch (error) {

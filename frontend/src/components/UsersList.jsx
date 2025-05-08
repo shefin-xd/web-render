@@ -1,17 +1,67 @@
-import { Zap } from "lucide-react";
-import { useAuthStore } from "../store/useAuthStore";
+import React, { useState } from 'react';
 
 const UsersList = () => {
-  const { authUser } = useAuthStore();
+  // Sample users data with initial starred state
+  const [users, setUsers] = useState([
+    { id: 1, name: 'Alice Johnson', starred: false },
+    { id: 2, name: 'Bob Smith', starred: true },
+    { id: 3, name: 'Charlie Brown', starred: false },
+  ]);
+
+  // Function to delete a user by id
+  const handleDelete = (id) => {
+    setUsers(users.filter(user => user.id !== id));
+  };
+
+  // Function to toggle star status by user id
+  const handleToggleStar = (id) => {
+    setUsers(users.map(user => {
+      if (user.id === id) {
+        return { ...user, starred: !user.starred };
+      }
+      return user;
+    }));
+  };
 
   return (
-    <div className="w-full flex flex-1 flex-col items-center justify-center p-16 bg-base-100/50">
-      <div className="max-w-md text-center space-y-6">
+    div className="max-w-md mx-auto p-6 bg-base-200 rounded-lg shadow-lg font-sans">
+      h2 className="text-2xl font-semibold text-center mb-6 text-primary">Users List/h2>
 
-      </div>
-    </div>
+      {users.length === 0 ? (
+        p className="text-center text-gray-500 italic">No users available./p>
+      ) : (
+        ul className="space-y-4">
+          {users.map(user => (
+            li
+              key={user.id}
+              className="flex justify-between items-center bg-base-100 p-4 rounded-md shadow-sm border border-base-300"
+            >
+              span className={`text-lg ${user.starred ? 'font-bold text-yellow-500' : 'text-base-content'}`}>
+                {user.name}
+              /span>
+
+              div className="flex space-x-2">
+                button
+                  onClick={() => handleDelete(user.id)}
+                  className="btn btn-sm btn-error"
+                  aria-label={`Delete ${user.name}`}
+                >
+                  Delete
+                /button>
+                button
+                  onClick={() => handleToggleStar(user.id)}
+                  className={`btn btn-sm ${user.starred ? 'btn-warning' : 'btn-outline'}`}
+                  aria-label={`${user.starred ? 'Unstar' : 'Star'} ${user.name}`}
+                >
+                  {user.starred ? '★' : '☆'}
+                /button>
+              /div>
+            /li>
+          ))}
+        /ul>
+      )}
+    /div>
   );
 };
 
 export default UsersList;
-

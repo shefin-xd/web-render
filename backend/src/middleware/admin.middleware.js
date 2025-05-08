@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 
-export const isAdmin = async (req, res, next) => {
+export const adminRoute = async (req, res, next) => {
   try {
     const userId = req.user._id;
     const role = await User.findById(userId).select("role");

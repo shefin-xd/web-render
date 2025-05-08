@@ -57,11 +57,11 @@ const UsersList = () => {
 
   return (
     <div className="w-screen h-screen bg-base-200 flex flex-col p-6">
-      <div className="overflow-auto bg-base-100 rounded-lg shadow-md p-4 flex-grow max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-primary text-center mb-8">
-          Users List
-        </h2>
+      <h2 className="text-3xl font-bold text-primary text-center mb-8">
+        Users List
+      </h2>
 
+      <div className="overflow-auto bg-base-100 rounded-lg shadow-md p-4 flex-grow">
         {users.length === 0 ? (
           <p className="text-center text-gray-500 italic flex-grow flex items-center justify-center">
             No users available.

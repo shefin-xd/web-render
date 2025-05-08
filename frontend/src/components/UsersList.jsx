@@ -32,7 +32,7 @@ const UsersList = () => {
               <button
                 onClick={() => setSelectedUser (user)}
                 className={`
-                  w-full p-3 flex items-center gap-3
+                  w-full p-3 flex items-center gap-2
                   hover:bg-base-300 transition-colors
                   ${selectedUser  ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}
                 `}
@@ -53,7 +53,7 @@ const UsersList = () => {
                 </div>
 
                 {/* User info - name and email */}
-                <div className="text-left min-w-0">
+                <div className="flex-grow text-left min-w-0 ml-2">
                   <div className="font-medium truncate">{user.name}</div>
                   <div className="text-sm text-zinc-400 truncate">{user.email}</div>
                 </div>

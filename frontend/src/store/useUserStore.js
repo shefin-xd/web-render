@@ -17,5 +17,6 @@ export const useUserStore = create((set, get) => ({
     } finally {
       set({ isUsersLoading: false });
     }
-  }
+  },
+  setSelectedUser: (selectedUser) => set({ selectedUser }),
 }));

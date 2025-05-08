@@ -21,7 +21,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    lastSeen: Date,
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+		},
   },
   { timestamps: true }
 );

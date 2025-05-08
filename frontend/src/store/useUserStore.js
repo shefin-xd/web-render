@@ -4,6 +4,7 @@ import { axiosInstance } from "../lib/axios";
 
 export const useUserStore = create((set, get) => ({
   users: [],
+  selectedUser: null,
   isUsersLoading: false,
 
   getUsers: async () => {

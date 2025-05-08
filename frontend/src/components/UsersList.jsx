@@ -27,36 +27,39 @@ const UsersList = () => {
 
       <div className="overflow-y-auto w-full py-3 flex-grow">
         <div className="container mx-auto p-4">
-          {filteredUsers.map((user) => (
-            <button
-              key={user._id}
-              onClick={() => setSelectedUser (user)}
-              className={`
-                w-full p-3 flex items-center gap-3
-                hover:bg-base-300 transition-colors
-                ${selectedUser  ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}
-              `}
-            >
-              <div className="relative mx-auto lg:mx-0">
-                <img
-                  src={user.profilePic || "/avatar.png"}
-                  alt={user.name}
-                  className="size-12 object-cover rounded-full"
-                />
-                {onlineUsers.includes(user._id) && (
-                  <span
-                    className="absolute bottom-0 right-0 size-3 bg-green-500 
-                    rounded-full ring-2 ring-zinc-900"
+          {filteredUsers.map((user, index) => (
+            <div key={user._id}>
+              <button
+                onClick={() => setSelectedUser (user)}
+                className={`
+                  w-full p-3 flex items-center gap-3
+                  hover:bg-base-300 transition-colors
+                  ${selectedUser  ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}
+                `}
+              >
+                <span className="font-medium">{index + 1}.</span> {/* Numbering */}
+                <div className="relative mx-auto lg:mx-0">
+                  <img
+                    src={user.profilePic || "/avatar.png"}
+                    alt={user.name}
+                    className="size-12 object-cover rounded-full"
                   />
-                )}
-              </div>
+                  {onlineUsers.includes(user._id) && (
+                    <span
+                      className="absolute bottom-0 right-0 size-3 bg-green-500 
+                      rounded-full ring-2 ring-zinc-900"
+                    />
+                  )}
+                </div>
 
-              {/* User info - name and email */}
-              <div className="text-left min-w-0">
-                <div className="font-medium truncate">{user.name}</div>
-                <div className="text-sm text-zinc-400 truncate">{user.email}</div>
-              </div>
-            </button>
+                {/* User info - name and email */}
+                <div className="text-left min-w-0">
+                  <div className="font-medium truncate">{user.name}</div>
+                  <div className="text-sm text-zinc-400 truncate">{user.email}</div>
+                </div>
+              </button>
+              <hr className="border-t border-base-300" /> {/* Divider line */}
+            </div>
           ))}
 
           {filteredUsers.length === 0 && (

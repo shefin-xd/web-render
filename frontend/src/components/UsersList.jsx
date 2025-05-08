@@ -24,43 +24,43 @@ const UsersList = () => {
   };
 
   return (
-    div className="max-w-md mx-auto p-6 bg-base-200 rounded-lg shadow-lg font-sans">
-      h2 className="text-2xl font-semibold text-center mb-6 text-primary">Users List/h2>
+    <div className="max-w-md mx-auto p-6 bg-base-200 rounded-lg shadow-lg font-sans">
+      <h2 className="text-2xl font-semibold text-center mb-6 text-primary">Users List</h2>
 
       {users.length === 0 ? (
-        p className="text-center text-gray-500 italic">No users available./p>
+        <p className="text-center text-gray-500 italic">No users available.</p>
       ) : (
-        ul className="space-y-4">
+        <ul className="space-y-4">
           {users.map(user => (
-            li
+            <li
               key={user.id}
               className="flex justify-between items-center bg-base-100 p-4 rounded-md shadow-sm border border-base-300"
             >
-              span className={`text-lg ${user.starred ? 'font-bold text-yellow-500' : 'text-base-content'}`}>
+              <span className={`text-lg ${user.starred ? 'font-bold text-yellow-500' : 'text-base-content'}`}>
                 {user.name}
-              /span>
+              </span>
 
-              div className="flex space-x-2">
-                button
+              <div className="flex space-x-2">
+                <button
                   onClick={() => handleDelete(user.id)}
                   className="btn btn-sm btn-error"
                   aria-label={`Delete ${user.name}`}
                 >
                   Delete
-                /button>
-                button
+                </button>
+                <button
                   onClick={() => handleToggleStar(user.id)}
                   className={`btn btn-sm ${user.starred ? 'btn-warning' : 'btn-outline'}`}
                   aria-label={`${user.starred ? 'Unstar' : 'Star'} ${user.name}`}
                 >
                   {user.starred ? '★' : '☆'}
-                /button>
-              /div>
-            /li>
+                </button>
+              </div>
+            </li>
           ))}
-        /ul>
+        </ul>
       )}
-    /div>
+    </div>
   );
 };
 

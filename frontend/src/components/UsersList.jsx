@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const AdminIcon = () => (
   <svg
-    className="w-4 h-4 text-yellow-400"
+    className="w-3 h-3 text-green-500"
     fill="currentColor"
     viewBox="0 0 20 20"
     aria-hidden="true"
@@ -49,7 +49,7 @@ const UsersList = () => {
 
   return (
     <div className="w-screen h-screen bg-base-200 flex flex-col p-6">
-      <h2 className="text-3xl font-bold text-center mb-8 text-primary">
+      <h2 className="text-3xl font-bold text-primary text-center mb-8">
         Users List
       </h2>
 
@@ -73,7 +73,7 @@ const UsersList = () => {
                     loading="lazy"
                   />
                   {user.starred && (
-                    <span className="absolute top-0 right-0 bg-yellow-400 rounded-full p-[2px] border border-white">
+                    <span className="absolute top-0 right-0 bg-green-500 rounded-full p-[1.5px] border border-white">
                       <AdminIcon />
                     </span>
                   )}
@@ -93,26 +93,15 @@ const UsersList = () => {
                   Delete
                 </button>
 
-                {/* On/Off toggle switch for star */}
-                <label className="flex items-center cursor-pointer">
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      checked={user.starred}
-                      onChange={() => handleToggleStar(user.id)}
-                      className="sr-only"
-                      aria-label={`${user.starred ? 'Starred' : 'Not starred'} toggle for ${user.name}`}
-                    />
-                    <div className="w-12 h-6 bg-gray-300 rounded-full shadow-inner"></div>
-                    <div
-                      className={`dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition ${
-                        user.starred ? 'transform translate-x-6 bg-yellow-400' : ''
-                      }`}
-                    ></div>
-                  </div>
-                  <span className="ml-3 text-sm font-medium select-none">
-                    {user.starred ? 'On' : 'Off'}
-                  </span>
+                {/* Checkbox toggle for star */}
+                <label className="label cursor-pointer py-0 m-0">
+                  <input
+                    type="checkbox"
+                    checked={user.starred}
+                    onChange={() => handleToggleStar(user.id)}
+                    className="checkbox checkbox-primary"
+                    aria-label={`Admin toggle for ${user.name}`}
+                  />
                 </label>
               </div>
             </li>

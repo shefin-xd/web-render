@@ -24,6 +24,8 @@ const UsersList = () => {
   };
 
   return (
+    <div className="w-full flex flex-1 flex-col items-center justify-center p-16 bg-base-100/50">
+      <div className="max-w-md text-center space-y-6">
       <h2 className="text-2xl font-semibold text-center mb-6 text-primary">Users List</h2>
 
       {users.length === 0 ? (
@@ -59,7 +61,9 @@ const UsersList = () => {
           ))}
         </ul>
       )}
-    
+    </div>
+      </div>
+            
   );
 };
 

@@ -6,7 +6,7 @@ import { Users } from "lucide-react";
 const UsersList = () => {
   const { getUsers, users, selectedUser , setSelectedUser  } = useUserStore();
   const { onlineUsers } = useAuthStore();
-  const [showAdminOnly, setShowAdminOnly] = useState(false);
+  const [showOnlineOnly, setShowOnlineOnly] = useState(false);
 
   useEffect(() => {
     getUsers();
@@ -27,12 +27,13 @@ const UsersList = () => {
           <label className="cursor-pointer flex items-center gap-2">
             <input
               type="checkbox"
-              checked={showAdminOnly}
-              onChange={(e) => setShowAdminOnly(e.target.checked)}
+              checked={showOnlineOnly}
+              onChange={(e) => setShowOnlineOnly(e.target.checked)}
               className="checkbox checkbox-sm"
             />
             <span className="text-sm">Show admin only</span>
           </label>
+          <span className="text-xs text-zinc-500">({onlineUsers.length - 1} online)</span>
         </div>
       </div>
 

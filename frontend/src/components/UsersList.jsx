@@ -1,26 +1,39 @@
 import React, { useState } from 'react';
 
 const UsersList = () => {
-  // Sample users data with initial starred state
+  // Sample users data with profile picture, email, and starred status
   const [users, setUsers] = useState([
-    { id: 1, name: 'Alice Johnson', starred: false },
-    { id: 2, name: 'Bob Smith', starred: true },
-    { id: 3, name: 'Charlie Brown', starred: false },
+    {
+      id: 1,
+      name: 'Alice Johnson',
+      email: 'alice.johnson@example.com',
+      avatar: 'https://i.pravatar.cc/48?img=1',
+      starred: false,
+    },
+    {
+      id: 2,
+      name: 'Bob Smith',
+      email: 'bob.smith@example.com',
+      avatar: 'https://i.pravatar.cc/48?img=2',
+      starred: true,
+    },
+    {
+      id: 3,
+      name: 'Charlie Brown',
+      email: 'charlie.brown@example.com',
+      avatar: 'https://i.pravatar.cc/48?img=3',
+      starred: false,
+    },
   ]);
 
-  // Function to delete a user by id
+  // Delete user handler
   const handleDelete = (id) => {
     setUsers(users.filter(user => user.id !== id));
   };
 
-  // Function to toggle star status by user id
+  // Toggle star handler
   const handleToggleStar = (id) => {
-    setUsers(users.map(user => {
-      if (user.id === id) {
-        return { ...user, starred: !user.starred };
-      }
-      return user;
-    }));
+    setUsers(users.map(user => (user.id === id ? { ...user, starred: !user.starred } : user)));
   };
 
   return (
@@ -40,11 +53,22 @@ const UsersList = () => {
               key={user.id}
               className="flex justify-between items-center bg-base-100 p-4 rounded-md shadow-md border border-base-300"
             >
-              <span className={`text-lg ${user.starred ? 'font-bold text-yellow-500' : 'text-base-content'}`}>
-                {user.name}
-              </span>
+              <div className="flex items-center space-x-4">
+                <img
+                  src={user.avatar}
+                  alt={`${user.name} avatar`}
+                  className="w-12 h-12 rounded-full border border-base-300"
+                  loading="lazy"
+                />
+                <div>
+                  <p className={`text-lg font-medium ${user.starred ? 'text-yellow-600' : 'text-base-content'}`}>
+                    {user.name}
+                  </p>
+                  <p className="text-sm text-gray-500">{user.email}</p>
+                </div>
+              </div>
 
-              <div className="flex space-x-3">
+              <div className="flex items-center space-x-3">
                 <button
                   onClick={() => handleDelete(user.id)}
                   className="btn btn-sm btn-error"
@@ -52,13 +76,28 @@ const UsersList = () => {
                 >
                   Delete
                 </button>
-                <button
-                  onClick={() => handleToggleStar(user.id)}
-                  className={`btn btn-sm ${user.starred ? 'btn-warning' : 'btn-outline'}`}
-                  aria-label={`${user.starred ? 'Unstar' : 'Star'} ${user.name}`}
-                >
-                  {user.starred ? '★' : '☆'}
-                </button>
+
+                {/* On/Off toggle switch for star */}
+                <label className="flex items-center cursor-pointer">
+                  <div className="relative">
+                    <input
+                      type="checkbox"
+                      checked={user.starred}
+                      onChange={() => handleToggleStar(user.id)}
+                      className="sr-only"
+                      aria-label={`${user.starred ? 'Starred' : 'Not starred'} toggle for ${user.name}`}
+                    />
+                    <div className="w-12 h-6 bg-gray-300 rounded-full shadow-inner"></div>
+                    <div
+                      className={`dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition ${
+                        user.starred ? 'transform translate-x-6 bg-yellow-400' : ''
+                      }`}
+                    ></div>
+                  </div>
+                  <span className="ml-3 text-sm font-medium select-none">
+                    {user.starred ? 'On' : 'Off'}
+                  </span>
+                </label>
               </div>
             </li>
           ))}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Trash2 } from 'lucide-react';
 
 const AdminIcon = () => (
   <svg
@@ -8,17 +9,6 @@ const AdminIcon = () => (
     aria-hidden="true"
   >
     <path d="M10 0L3 4v6c0 5 4 9 7 10 3-1 7-5 7-10V4l-7-4zM9 7h2v4H9V7zm1-4a1 1 0 110 2 1 1 0 010-2z" />
-  </svg>
-);
-
-const DeleteIcon = () => (
-  <svg
-    className="w-5 h-5 text-red-600"
-    fill="currentColor"
-    viewBox="0 0 20 20"
-    aria-hidden="true"
-  >
-    <path d="M6 2a1 1 0 00-1 1v1H2a1 1 0 000 2h1v12a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 000-2h-3V3a1 1 0 00-1-1H6zm0 2h8v1H6V4zm1 3h6v12H7V7z" />
   </svg>
 );
 
@@ -56,51 +46,51 @@ const UsersList = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-base-200 flex flex-col p-6">
-      <h2 className="text-3xl font-bold text-primary text-center mb-8">
-        Users List
-      </h2>
+    <div className="w-screen h-screen bg-base-900 flex flex-col p-6">
+      <div className="bg-base-800 rounded-lg shadow-md p-6 flex flex-col flex-grow max-w-4xl mx-auto">
+        <h2 className="text-3xl font-bold text-primary text-center mb-8">
+          Users List
+        </h2>
 
-      <div className="overflow-auto bg-base-100 rounded-lg shadow-md p-4 flex-grow">
         {users.length === 0 ? (
-          <p className="text-center text-gray-500 italic flex-grow flex items-center justify-center">
+          <p className="text-center text-gray-400 italic flex-grow flex items-center justify-center">
             No users available.
           </p>
         ) : (
-          <ul className="space-y-4">
+          <ul className="space-y-4 overflow-auto flex-grow">
             {users.map(user => (
               <li
                 key={user.id}
-                className="flex justify-between items-center p-4 rounded-md border border-base-300"
+                className="flex justify-between items-center p-4 rounded-md border border-base-700 bg-base-900"
               >
                 <div className="flex items-center space-x-4">
                   <div className="relative w-12 h-12">
                     <img
                       src={user.avatar}
                       alt={`${user.name} avatar`}
-                      className="w-12 h-12 rounded-full border border-base-300"
+                      className="w-12 h-12 rounded-full border border-base-700"
                       loading="lazy"
                     />
                     {user.starred && (
-                      <span className="absolute top-0 right-0 bg-green-500 rounded-full p-[1.5px] border border-white">
+                      <span className="absolute top-0 right-0 bg-green-500 rounded-full p-[1.5px] border border-base-900">
                         <AdminIcon />
                       </span>
                     )}
                   </div>
                   <div>
                     <p className="text-lg font-medium text-base-content">{user.name}</p>
-                    <p className="text-sm text-gray-500">{user.email}</p>
+                    <p className="text-sm text-gray-400">{user.email}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={() => handleDelete(user.id)}
-                    className="btn btn-sm btn-ghost hover:bg-red-200"
+                    className="btn btn-sm btn-ghost hover:bg-red-800"
                     aria-label={`Delete ${user.name}`}
                     title="Delete user"
                   >
-                    <DeleteIcon />
+                    <Trash2 className="w-5 h-5 text-red-600" />
                   </button>
 
                   <label className="label cursor-pointer m-0 p-0">

@@ -18,25 +18,10 @@ const UsersList = () => {
 
   return (
     <div className="h-screen w-full flex flex-col">
-      <div className="border-b border-base-300 w-full p-5 flex items-center justify-between">
-  return (
-    <div className="h-screen w-full flex flex-col">
-      <div className="border-b border-base-300 w-full p-5 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="border-b border-base-300 w-full p-5 flex items-center justify-center">
+        <div className="flex items-center gap-2 justify-center">
           <Users className="size-6" />
           <span className="font-medium">Users List</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <label className="cursor-pointer flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={showOnlineOnly}
-              onChange={(e) => setShowOnlineOnly(e.target.checked)}
-              className="checkbox checkbox-sm"
-            />
-            <span className="text-sm">Show admin only</span>
-          </label>
-          <span className="text-xs text-zinc-500">({onlineUsers.length - 1} online)</span>
         </div>
       </div>
 

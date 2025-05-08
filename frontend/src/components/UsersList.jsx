@@ -51,11 +51,11 @@ const UsersList = () => {
                     />
                   )}
                 </div>
-
-                {/* User info - name and email */}
-                <div className="flex flex-col text-left min-w-0 ml-2">
-                  <div className="font-medium truncate">{user.name}</div>
-                  <div className="text-sm text-zinc-400 truncate">{user.email}</div>
+                <div>
+                  <h3 className="font-medium">{user.name}</h3>
+                  <p className="text-sm text-base-content/70">
+                    {user.email}
+                  </p>
                 </div>
               </button>
               <hr className="border-t border-base-300" /> {/* Divider line */}

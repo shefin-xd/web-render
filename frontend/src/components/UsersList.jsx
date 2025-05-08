@@ -51,66 +51,69 @@ const UsersList = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-base-200 flex flex-col p-6">
-      <h2 className="text-3xl font-bold text-primary text-center mb-8">Users List</h2>
+    <div className="h-screen pt-20">
+      <div className="max-w-2xl mx-auto p-4 py-8">
+        <div className="bg-base-300 rounded-xl p-6 space-y-8">
+          <h2 className="text-3xl font-bold text-primary text-center mb-8">Users List</h2>
 
-      <div className="overflow-auto bg-base-100 rounded-lg shadow-md p-4 flex-grow">
-        {users.length === 0 ? (
-          <p className="text-center text-gray-500 italic flex-grow flex items-center justify-center">
-            No users available.
-          </p>
-        ) : (
-          <ul className="space-y-4">
-            {users.map(user => (
-              <li key={user.id} className="flex justify-between items-center p-4 rounded-md border border-base-300">
-                <div className="flex items-center space-x-4">
-                  <div className="relative w-12 h-12">
-                    <img
-                      src={user.avatar}
-                      alt={`${user.name} avatar`}
-                      className="w-12 h-12 rounded-full border border-base-300"
-                      loading="lazy"
-                    />
-                    {user.starred && (
-                      <span className="absolute top-0 right-0 bg-green-500 rounded-full p-[1.5px] border border-white">
-                        <AdminIcon />
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-lg font-medium text-base-content">{user.name}</p>
-                    <p className="text-sm text-gray-500">{user.email}</p>
-                  </div>
-                </div>
+          <div className="overflow-auto bg-base-100 rounded-lg shadow-md p-4 flex-grow">
+            {users.length === 0 ? (
+              <p className="text-center text-gray-500 italic flex-grow flex items-center justify-center">
+                No users available.
+              </p>
+            ) : (
+              <ul className="space-y-4">
+                {users.map(user => (
+                  <li key={user.id} className="flex justify-between items-center p-4 rounded-md border border-base-300">
+                    <div className="flex items-center space-x-4">
+                      <div className="relative w-12 h-12">
+                        <img
+                          src={user.avatar}
+                          alt={`${user.name} avatar`}
+                          className="w-12 h-12 rounded-full border border-base-300"
+                          loading="lazy"
+                        />
+                        {user.starred && (
+                          <span className="absolute top-0 right-0 bg-green-500 rounded-full p-[1.5px] border border-white">
+                            <AdminIcon />
+                          </span>
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-lg font-medium text-base-content">{user.name}</p>
+                        <p className="text-sm text-gray-500">{user.email}</p>
+                      </div>
+                    </div>
 
-                <div className="flex items-center space-x-3">
-                  <button
-                    onClick={() => handleDelete(user.id)}
-                    className="btn text-red-600"
-                    aria-label={`Delete ${user.name}`}
-                    title="Delete user"
-                  >
-                    <Trash2 className="w-5 h-5" />
-                  </button>
+                    <div className="flex items-center space-x-3">
+                      <button
+                        onClick={() => handleDelete(user.id)}
+                        className="btn btn-sm btn-ghost hover:bg-red-600"
+                        aria-label={`Delete ${user.name}`}
+                        title="Delete user"
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </button>
 
-                  <label className="label cursor-pointer m-0 p-0">
-                    <input
-                      type="checkbox"
-                      checked={user.starred}
-                      onChange={() => handleToggleStar(user.id)}
-                      className="checkbox checkbox-sm"
-                      aria-label={`Admin toggle for ${user.name}`}
-                    />
-                  </label>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+                      <label className="label cursor-pointer m-0 p-0">
+                        <input
+                          type="checkbox"
+                          checked={user.starred}
+                          onChange={() => handleToggleStar(user.id)}
+                          className="checkbox checkbox-sm"
+                          aria-label={`Admin toggle for ${user.name}`}
+                        />
+                      </label>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default UsersList;
-

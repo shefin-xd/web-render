@@ -108,7 +108,7 @@ const UsersList = () => {
                       type="checkbox"
                       checked={user.starred}
                       onChange={() => handleToggleStar(user.id)}
-                      className="checkbox checkbox-primary"
+                      className="checkbox checkbox-sm"
                       aria-label={`Admin toggle for ${user.name}`}
                     />
                   </label>

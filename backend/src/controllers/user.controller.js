@@ -10,13 +10,3 @@ export const getUsers = async (req, res) => {
   }
 };
 
-export const getAdmins = async (req, res) => {
-  try {
-    const Users = await User.find({ role: "admin" }).select("-password");
-    res.status(200).json(Users);
-  } catch (error) {
-    console.error("Error in getUsers: ", error.message);
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
-

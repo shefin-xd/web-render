@@ -18,8 +18,8 @@ const UsersList = () => {
 
   return (
     <div className="h-screen w-full flex flex-col">
-      <div className="border-b border-base-300 w-full p-5 flex items-center justify-center">
-        <div className="flex items-center gap-2 justify-center">
+      <div className="border-b border-base-300 w-full p-5 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <Users className="size-6" />
           <span className="font-medium">Users List</span>
         </div>

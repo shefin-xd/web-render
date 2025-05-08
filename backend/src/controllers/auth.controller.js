@@ -129,20 +129,6 @@ export const deleteProfile = async (req, res) => {
   }
 };
 
-export const getLastSeen = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const user = await User.findById(id).select("lastSeen");
-    if (!user) {
-      return res.status(400).json({ message: "User not found" });
-    }
-    res.status(200).json({ lastSeen: user.lastSeen })
-  } catch (error) {
-    console.log("error in fetching last seen:", error.message);
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
-
 export const checkAuth = (req, res) => {
   try {
     res.status(200).json(req.user);

@@ -86,7 +86,7 @@ const UsersList = () => {
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={() => handleDelete(user.id)}
-                    className="btn btn-sm btn-ghost hover:bg-red-600"
+                    className="btn bg-red-600 text-white flex"
                     aria-label={`Delete ${user.name}`}
                     title="Delete user"
                   >

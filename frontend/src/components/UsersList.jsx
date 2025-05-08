@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Trash2, Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
+
 
 const AdminIcon = () => (
   <svg
@@ -96,12 +99,14 @@ const UsersList = () => {
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={() => handleDelete(user.id)}
-                    className="btn btn-sm btn-ghost hover:bg-red-200"
+                    className="btn btn-sm btn-ghost hover:bg-red-600"
                     aria-label={`Delete ${user.name}`}
                     title="Delete user"
                   >
-                    <DeleteIcon />
+                    <Trash2 className="w-5 h-5" />
                   </button>
+
+           
 
                   <label className="label cursor-pointer m-0 p-0">
                     <input

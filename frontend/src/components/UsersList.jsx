@@ -38,7 +38,7 @@ const UsersList = () => {
                 `}
               >
                 <span className="font-medium">{index + 1}.</span> {/* Numbering */}
-                <div className="relative mx-auto lg:mx-0">
+                <div className="relative">
                   <img
                     src={user.profilePic || "/avatar.png"}
                     alt={user.name}
@@ -50,6 +50,10 @@ const UsersList = () => {
                       rounded-full ring-2 ring-zinc-900"
                     />
                   )}
+                </div>
+
+                {/* User info - name and email */}
+                <div className="flex flex-col text-left min-w-0 ml-2">
                   <div className="font-medium truncate">{user.name}</div>
                   <div className="text-sm text-zinc-400 truncate">{user.email}</div>
                 </div>

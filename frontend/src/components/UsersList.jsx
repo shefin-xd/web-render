@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const AdminIcon = () => (
   <svg
-    className="w-5 h-5 text-yellow-500 ml-2"
+    className="w-4 h-4 text-yellow-400"
     fill="currentColor"
     viewBox="0 0 20 20"
     aria-hidden="true"
@@ -65,20 +65,22 @@ const UsersList = () => {
               className="flex justify-between items-center bg-base-100 p-4 rounded-md shadow-md border border-base-300"
             >
               <div className="flex items-center space-x-4">
-                <img
-                  src={user.avatar}
-                  alt={`${user.name} avatar`}
-                  className="w-12 h-12 rounded-full border border-base-300"
-                  loading="lazy"
-                />
-                <div className="flex items-center">
-                  <div>
-                    <p className={`text-lg font-medium ${user.starred ? 'text-yellow-600' : 'text-base-content'}`}>
-                      {user.name}
-                    </p>
-                    <p className="text-sm text-gray-500">{user.email}</p>
-                  </div>
-                  {user.starred && <AdminIcon />}
+                <div className="relative w-12 h-12">
+                  <img
+                    src={user.avatar}
+                    alt={`${user.name} avatar`}
+                    className="w-12 h-12 rounded-full border border-base-300"
+                    loading="lazy"
+                  />
+                  {user.starred && (
+                    <span className="absolute top-0 right-0 bg-yellow-400 rounded-full p-[2px] border border-white">
+                      <AdminIcon />
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <p className="text-lg font-medium text-base-content">{user.name}</p>
+                  <p className="text-sm text-gray-500">{user.email}</p>
                 </div>
               </div>
 

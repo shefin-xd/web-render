@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const AdminIcon = () => (
   <svg
-    className="w-3 h-3 text-green-500"
+    className="w-4 h-4 text-green-500"
     fill="currentColor"
     viewBox="0 0 20 20"
     aria-hidden="true"
@@ -13,7 +13,7 @@ const AdminIcon = () => (
 
 const DeleteIcon = () => (
   <svg
-    className="w-5 h-5 text-red-600"
+    className="w-6 h-6 text-red-600 transition-transform duration-300 ease-in-out hover:scale-110"
     fill="currentColor"
     viewBox="0 0 20 20"
     aria-hidden="true"
@@ -56,47 +56,49 @@ const UsersList = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-base-200 flex flex-col p-6">
-      <h2 className="text-3xl font-bold text-primary text-center mb-8">
-        Users List
-      </h2>
+    <div className="w-screen min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 flex flex-col p-8 select-none">
+      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-xl p-8 flex flex-col flex-grow">
+        <h2 className="text-4xl font-extrabold text-primary text-center mb-12 tracking-wider drop-shadow-md">
+          Users List
+        </h2>
 
-      <div className="overflow-auto bg-base-100 rounded-lg shadow-md p-4 flex-grow">
         {users.length === 0 ? (
-          <p className="text-center text-gray-500 italic flex-grow flex items-center justify-center">
+          <p className="text-center text-gray-400 italic flex-grow flex items-center justify-center text-lg">
             No users available.
           </p>
         ) : (
-          <ul className="space-y-4">
+          <ul className="space-y-6 overflow-auto flex-grow custom-scrollbar">
             {users.map(user => (
               <li
                 key={user.id}
-                className="flex justify-between items-center p-4 rounded-md border border-base-300"
+                className="flex justify-between items-center p-5 rounded-lg border border-gray-200 bg-white shadow hover:shadow-lg transition-shadow duration-300"
               >
-                <div className="flex items-center space-x-4">
-                  <div className="relative w-12 h-12">
+                <div className="flex items-center space-x-5">
+                  <div className="relative w-14 h-14 flex-shrink-0">
                     <img
                       src={user.avatar}
                       alt={`${user.name} avatar`}
-                      className="w-12 h-12 rounded-full border border-base-300"
+                      className={`w-14 h-14 rounded-full border-4 transition-all duration-300 ease-in-out ${
+                        user.starred ? 'border-yellow-400 shadow-yellow-300' : 'border-gray-300'
+                      }`}
                       loading="lazy"
                     />
                     {user.starred && (
-                      <span className="absolute top-0 right-0 bg-green-500 rounded-full p-[1.5px] border border-white">
+                      <span className="absolute top-0 right-0 bg-green-500 rounded-full p-1 border-2 border-white shadow-lg">
                         <AdminIcon />
                       </span>
                     )}
                   </div>
                   <div>
-                    <p className="text-lg font-medium text-base-content">{user.name}</p>
-                    <p className="text-sm text-gray-500">{user.email}</p>
+                    <p className="text-xl font-semibold text-gray-900 tracking-wide">{user.name}</p>
+                    <p className="text-sm text-gray-500 mt-1">{user.email}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-6">
                   <button
                     onClick={() => handleDelete(user.id)}
-                    className="btn btn-sm btn-ghost hover:bg-red-200"
+                    className="btn btn-sm btn-ghost p-2 rounded-full hover:bg-red-100 transition-colors duration-300"
                     aria-label={`Delete ${user.name}`}
                     title="Delete user"
                   >
@@ -108,7 +110,7 @@ const UsersList = () => {
                       type="checkbox"
                       checked={user.starred}
                       onChange={() => handleToggleStar(user.id)}
-                      className="checkbox checkbox-sm"
+                      className="checkbox checkbox-primary checkbox-md transition-transform hover:scale-110"
                       aria-label={`Admin toggle for ${user.name}`}
                     />
                   </label>
@@ -118,6 +120,22 @@ const UsersList = () => {
           </ul>
         )}
       </div>
+
+      <style>{`
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background-color: #a78bfa; /* Indigo-400 */
+          border-radius: 20px;
+          border: 2px solid transparent;
+          background-clip: content-box;
+        }
+      `}</style>
     </div>
   );
 };

@@ -24,24 +24,27 @@ const UsersList = () => {
   };
 
   return (
-    <div className="w-full flex flex-1 flex-col items-center justify-center p-16 bg-base-100/50">
-      <div className="max-w-md text-center space-y-6">
-      <h2 className="text-2xl font-semibold text-center mb-6 text-primary">Users List</h2>
+    <div className="w-screen h-screen bg-base-200 flex flex-col p-6">
+      <h2 className="text-3xl font-bold text-center mb-8 text-primary">
+        Users List
+      </h2>
 
       {users.length === 0 ? (
-        <p className="text-center text-gray-500 italic">No users available.</p>
+        <p className="text-center text-gray-500 italic flex-grow flex items-center justify-center">
+          No users available.
+        </p>
       ) : (
-        <ul className="space-y-4">
+        <ul className="flex-grow overflow-auto space-y-4">
           {users.map(user => (
             <li
               key={user.id}
-              className="flex justify-between items-center bg-base-100 p-4 rounded-md shadow-sm border border-base-300"
+              className="flex justify-between items-center bg-base-100 p-4 rounded-md shadow-md border border-base-300"
             >
               <span className={`text-lg ${user.starred ? 'font-bold text-yellow-500' : 'text-base-content'}`}>
                 {user.name}
               </span>
 
-              <div className="flex space-x-2">
+              <div className="flex space-x-3">
                 <button
                   onClick={() => handleDelete(user.id)}
                   className="btn btn-sm btn-error"
@@ -62,8 +65,6 @@ const UsersList = () => {
         </ul>
       )}
     </div>
-      </div>
-            
   );
 };
 

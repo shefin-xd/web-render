@@ -13,7 +13,7 @@ const UsersList = () => {
   }, [getUsers]);
 
   const filteredUsers = showAdminOnly
-    ? users.filter((user) => onlineUsers.includes(user._id)))
+    ? users.filter((user) => user.role === "admin")
     : users;
 
   return (

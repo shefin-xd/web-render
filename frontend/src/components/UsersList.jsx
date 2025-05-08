@@ -8,7 +8,6 @@ const UsersList = () => {
     <div className="w-full flex flex-1 flex-col items-center justify-center p-16 bg-base-100/50">
       <div className="max-w-md text-center space-y-6">
 
-        <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
     <thead>
@@ -154,22 +153,10 @@ const UsersList = () => {
         </th>
       </tr>
     </tbody>
-    {/* foot */}
-    <tfoot>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-        <th></th>
-      </tr>
-    </tfoot>
+
   </table>
-</div>
         
 
-        {/* Welcome Text */}
-        <h2 className="text-2xl font-bold">Hi {authUser?.name}!</h2>
       </div>
     </div>
   );

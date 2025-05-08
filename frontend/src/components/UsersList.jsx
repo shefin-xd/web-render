@@ -4,7 +4,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import SidebarSkeleton from "./skeletons/SidebarSkeleton";
 import { Users } from "lucide-react";
 
-const AdminPage = () => {
+const UsersList = () => {
   const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();
   const { onlineUsers } = useAuthStore();
   
@@ -55,5 +55,5 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default UsersList;
 

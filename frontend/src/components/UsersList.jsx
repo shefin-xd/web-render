@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
 
+const AdminIcon = () => (
+  <svg
+    className="w-5 h-5 text-yellow-500 ml-2"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+    aria-hidden="true"
+  >
+    <path d="M10 0L3 4v6c0 5 4 9 7 10 3-1 7-5 7-10V4l-7-4zM9 7h2v4H9V7zm1-4a1 1 0 110 2 1 1 0 010-2z" />
+  </svg>
+);
+
 const UsersList = () => {
   // Sample users data with profile picture, email, and starred status
   const [users, setUsers] = useState([
@@ -60,11 +71,14 @@ const UsersList = () => {
                   className="w-12 h-12 rounded-full border border-base-300"
                   loading="lazy"
                 />
-                <div>
-                  <p className={`text-lg font-medium ${user.starred ? 'text-yellow-600' : 'text-base-content'}`}>
-                    {user.name}
-                  </p>
-                  <p className="text-sm text-gray-500">{user.email}</p>
+                <div className="flex items-center">
+                  <div>
+                    <p className={`text-lg font-medium ${user.starred ? 'text-yellow-600' : 'text-base-content'}`}>
+                      {user.name}
+                    </p>
+                    <p className="text-sm text-gray-500">{user.email}</p>
+                  </div>
+                  {user.starred && <AdminIcon />}
                 </div>
               </div>
 

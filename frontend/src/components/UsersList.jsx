@@ -24,7 +24,6 @@ const UsersList = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-base-200 rounded-lg shadow-lg font-sans">
       <h2 className="text-2xl font-semibold text-center mb-6 text-primary">Users List</h2>
 
       {users.length === 0 ? (
@@ -60,7 +59,7 @@ const UsersList = () => {
           ))}
         </ul>
       )}
-    </div>
+    
   );
 };
 

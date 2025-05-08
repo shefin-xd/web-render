@@ -4,7 +4,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import { Users } from "lucide-react";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser , setSelectedUser , isUsersLoading } = useUserStore();
+  const { getUsers, users, selectedUser , setSelectedUser  } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showOnlineOnly, setShowOnlineOnly] = useState(false);
 
@@ -38,41 +38,43 @@ const UsersList = () => {
       </div>
 
       <div className="overflow-y-auto w-full py-3 flex-grow">
-        {filteredUsers.map((user) => (
-          <button
-            key={user._id}
-            onClick={() => setSelectedUser (user)}
-            className={`
-              w-full p-3 flex items-center gap-3
-              hover:bg-base-300 transition-colors
-              ${selectedUser ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}
-            `}
-          >
-            <div className="relative mx-auto lg:mx-0">
-              <img
-                src={user.profilePic || "/avatar.png"}
-                alt={user.name}
-                className="size-12 object-cover rounded-full"
-              />
-              {onlineUsers.includes(user._id) && (
-                <span
-                  className="absolute bottom-0 right-0 size-3 bg-green-500 
-                  rounded-full ring-2 ring-zinc-900"
+        <div className="container mx-auto p-4">
+          {filteredUsers.map((user) => (
+            <button
+              key={user._id}
+              onClick={() => setSelectedUser (user)}
+              className={`
+                w-full p-3 flex items-center gap-3
+                hover:bg-base-300 transition-colors
+                ${selectedUser  ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}
+              `}
+            >
+              <div className="relative mx-auto lg:mx-0">
+                <img
+                  src={user.profilePic || "/avatar.png"}
+                  alt={user.name}
+                  className="size-12 object-cover rounded-full"
                 />
-              )}
-            </div>
+                {onlineUsers.includes(user._id) && (
+                  <span
+                    className="absolute bottom-0 right-0 size-3 bg-green-500 
+                    rounded-full ring-2 ring-zinc-900"
+                  />
+                )}
+              </div>
 
-            {/* User info - only visible on larger screens */}
-            <div className="text-left min-w-0">
-              <div className="font-medium truncate">{user.name}</div>
-              
-            </div>
-          </button>
-        ))}
+              {/* User info - name and email */}
+              <div className="text-left min-w-0">
+                <div className="font-medium truncate">{user.name}</div>
+                <div className="text-sm text-zinc-400 truncate">{user.email}</div>
+              </div>
+            </button>
+          ))}
 
-        {filteredUsers.length === 0 && (
-          <div className="text-center text-zinc-500 py-4">No online users</div>
-        )}
+          {filteredUsers.length === 0 && (
+            <div className="text-center text-zinc-500 py-4">No users available</div>
+          )}
+        </div>
       </div>
     </div>
   );

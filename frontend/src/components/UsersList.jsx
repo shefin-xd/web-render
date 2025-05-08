@@ -50,10 +50,6 @@ const UsersList = () => {
                       rounded-full ring-2 ring-zinc-900"
                     />
                   )}
-                </div>
-
-                {/* User info - name and email */}
-                <div className="flex-grow text-left min-w-0 ml-2">
                   <div className="font-medium truncate">{user.name}</div>
                   <div className="text-sm text-zinc-400 truncate">{user.email}</div>
                 </div>

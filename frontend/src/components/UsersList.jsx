@@ -13,7 +13,7 @@ const UsersList = () => {
   }, [getUsers]);
 
   const filteredUsers = showOnlineOnly
-    ? users.filter((user) => user.role === "admin")
+    ? users.filter((user) => users.role === "admin")
     : users;
 
   return (

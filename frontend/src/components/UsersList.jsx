@@ -88,17 +88,6 @@ const UsersList = () => {
 
               {/* Admin Toggle and Delete Icon */}
               <div className="flex items-center gap-2">
-<button
-									onClick={(e) => {
-                    e.stopPropagation();
-toggleAdmin(user._id)
-                  }}
-									className={`p-1 rounded-full ${
-										user.role ==="admin" ? "bg-yellow-400 text-gray-900" : "bg-gray-600 text-gray-300"
-									} hover:bg-yellow-500 transition-colors duration-200`}
-								>
-									<Star className='h-5 w-5' />
-								</button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation(); // Prevent triggering the onClick of the user div

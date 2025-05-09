@@ -5,8 +5,9 @@ const UserModal = ({ user, isOpen, onClose, onDelete, onMakeAdmin }) => {
   if (!isOpen || !user) return null;
 
   return (
-    <div className="modal modal-open modal-bottom sm:modal-middle">
-      <div className="modal-box relative max-w-md w-full">
+    <div className="fixed inset-0 flex items-center justify-center z-50" >
+      <div className="modal modal-open">
+        <div className="modal-box">
         {/* Close button on top right */}
         <button
           onClick={onClose}
@@ -63,6 +64,7 @@ const UserModal = ({ user, isOpen, onClose, onDelete, onMakeAdmin }) => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };

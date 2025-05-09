@@ -72,14 +72,16 @@ const UsersList = () => {
               {/* User info */}
               <div className="flex flex-col justify-center min-w-0 flex-1">
                 <div className="flex items-center justify-between w-full">
-                  <div className="font-medium truncate">{user.name}</div>
-                  {user.role === "admin" && (
-                    <ShieldCheck
-                      className="ml-2 text-red-500"
-                      size={20}
-                      title="Admin"
-                    />
-                  )}
+                  <div className="flex items-center">
+                    <div className="font-medium truncate">{user.name}</div>
+                    {user.role === "admin" && (
+                      <ShieldCheck
+                        className="ml-2 text-red-500"
+                        size={20}
+                        title="Admin"
+                      />
+                    )}
+                  </div>
                 </div>
                 <div className="text-sm text-zinc-400 truncate">{user.email}</div>
               </div>
@@ -98,10 +100,10 @@ const UsersList = () => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation(); // Prevent triggering the onClick of the user div
-                    deleteUser(user._id);
+                    deleteUser (user._id);
                   }}
                   className="text-red-500 hover:text-red-700"
-                  aria-label="Delete User"
+                  aria-label="Delete User "
                 >
                   <Trash2 size={20} />
                 </button>

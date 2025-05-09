@@ -13,15 +13,6 @@ const UsersListSkeleton = () => {
         </div>
       </div>
       
-      <div className="overflow-y-auto w-full py-3">
-        {skeletonUsers.map((_, idx) => (
-          <div key={idx} className="w-full p-3 flex items-center gap-3">
-            {/* Avatar skeleton */}
-            <div className="relative mx-auto lg:mx-0">
-              <div className="skeleton size-12 rounded-full" />
-            </div>
-
-
       <div className="overflow-y-auto w-full py-3 flex-grow">
         <div className="container mx-auto p-4">
           {skeletonUsers.map((_, idx, index) => (
@@ -46,4 +37,4 @@ const UsersListSkeleton = () => {
   );
 };
 
-export default UsersListSkeleton;
+export default UsersList;

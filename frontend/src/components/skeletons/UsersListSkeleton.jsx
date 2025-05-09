@@ -20,8 +20,8 @@ const UsersListSkeleton = () => {
                 <span className="font-medium">{idx + 1}.</span> {/* Numbering */}
                 <div className="relative">
                   <img
-                    src={user.profilePic || "/avatar.png"}
-                    alt={user.name}
+                    src={"/avatar.png"}
+                    alt={"shefin"}
                     className="size-12 object-cover rounded-full"
                   />
                   {onlineUsers.includes(user._id) && (

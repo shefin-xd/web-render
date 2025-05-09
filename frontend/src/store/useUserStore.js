@@ -25,7 +25,9 @@ export const useUserStore = create((set, get) => ({
     set({ isDeletingUser: true });
     try {
       const res = await axiosInstance.delete(`/users/${userId}`);
-      set({ users: users.filter((user) => user._id !== userId) });
+      set((prevUsers) => ({
+        users: prevUsers.users.filter((user) => user._id !== userId)
+			}));
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {

@@ -5,27 +5,21 @@ const UsersListSkeleton = () => {
   const skeletonContacts = Array(8).fill(null);
 
   return (
-    <div
-      className="h-screen w-screen border border-base-300 
-    flex flex-col transition-all duration-200"
-    >
-      {/* Header */}
-      <div className="border-b border-base-300 w-full p-5">
+    <div className="h-screen w-full flex flex-col transition-all duration-200">
+      <div className="border-b border-base-300 w-full p-5 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Users className="w-6 h-6" />
+          <Users className="size-6" />
           <span className="font-medium">Users List</span>
         </div>
       </div>
 
-      {/* Skeleton Contacts */}
-      <div className="overflow-y-auto w-full py-3 flex-1">
-        {skeletonContacts.map((_, idx) => (
-          <div key={idx} className="w-full p-3 flex items-center gap-3">
-            {/* Avatar skeleton */}
-            <div className="relative mx-auto lg:mx-0">
+      <div className="overflow-y-auto w-full py-3 flex-grow">
+        <div className="container mx-auto p-4">
+          {skeletonContacts.map((_, idx) => (
+            <div key={idx} className="relative">
+              <div className="relative mx-auto lg:mx-0">
               <div className="skeleton size-12 rounded-full" />
             </div>
-
             {/* User info skeleton - only visible on larger screens */}
             <div className="flex flex-col text-left min-w-0 ml-2">
               <div className="skeleton h-4 w-32 mb-2" />

@@ -31,7 +31,7 @@ export const toggleAdmin = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (user) {
-      user.role = (user.role !== "admin") ? "user" : "admin"
+      user.role = (user.role !== "admin") ? "admin" : "user"
       const updatedUser = await user.save();
       res.json(updatedUser);
     } else {

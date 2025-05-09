@@ -18,16 +18,17 @@ const UsersListSkeleton = () => {
           {skeletonContacts.map((_, idx) => (
             <div key={idx} className="relative">
               <div className="relative mx-auto lg:mx-0">
-              <div className="skeleton size-12 rounded-full" />
+                <div className="skeleton size-12 rounded-full" />
+              </div>
+              {/* User info skeleton - only visible on larger screens */}
+              <div className="flex flex-col text-left min-w-0 ml-2">
+                <div className="skeleton h-4 w-32 mb-2" />
+                <div className="skeleton h-3 w-16" />
+              </div>
+              <hr className="border-t border-base-300" />
             </div>
-            {/* User info skeleton - only visible on larger screens */}
-            <div className="flex flex-col text-left min-w-0 ml-2">
-              <div className="skeleton h-4 w-32 mb-2" />
-              <div className="skeleton h-3 w-16" />
-            </div>
-            <hr className="border-t border-base-300" />
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

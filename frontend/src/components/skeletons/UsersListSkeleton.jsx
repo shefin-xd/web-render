@@ -12,8 +12,8 @@ const UsersListSkeleton = () => {
       {/* Header */}
       <div className="border-b border-base-300 w-full p-5">
         <div className="flex items-center gap-2">
-          <Users className="w-6 h-6" />
-          <span className="font-medium hidden lg:block">Contacts</span>
+          <Users className="size-6" />
+          <span className="font-medium">Users List</span>
         </div>
       </div>
 
@@ -21,19 +21,21 @@ const UsersListSkeleton = () => {
       <div className="overflow-y-auto w-full py-3 flex-grow">
         {skeletonContacts.map((_, idx) => (
           <div key={idx} className="w-full p-3 flex items-center gap-3">
-            {/* Avatar skeleton now alongside username */}
+            {/* Numbering on the left */}
+            <div className="text-gray-500 font-medium w-6 text-center select-none">
+              {idx + 1}
+            </div>
+
+            {/* Avatar skeleton */}
             <div className="relative">
               <div className="skeleton size-12 rounded-full" />
             </div>
 
-            {/* User info skeleton, displayed alongside avatar */}
+            {/* User info skeleton */}
             <div className="flex flex-col justify-center min-w-0 flex-1">
               <div className="skeleton h-4 w-32 mb-2" />
               <div className="skeleton h-3 w-16" />
             </div>
-
-            {/* Numbering the skeletons */}
-            <div className="text-gray-500 font-medium">{idx + 1}</div>
           </div>
         ))}
       </div>

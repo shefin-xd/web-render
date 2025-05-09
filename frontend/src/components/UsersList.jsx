@@ -5,7 +5,7 @@ import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users, ShieldCheck } from "lucide-react";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();
+  const { getUsers, users, selectedUser , setSelectedUser , isUsersLoading } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
 
@@ -34,8 +34,8 @@ const UsersList = () => {
         {filteredUsers.map((user, index) => (
           <div
             key={user._id}
-            className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''} ${selectedUser?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
-            onClick={() => setSelectedUser(user)} // Set selected user on click
+            className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''} ${selectedUser ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
+            onClick={() => setSelectedUser (user)} // Set selected user on click
           >
             {/* Numbering on the left */}
             <div className="font-medium w-6 text-center select-none">
@@ -59,11 +59,11 @@ const UsersList = () => {
 
             {/* User info */}
             <div className="flex flex-col justify-center min-w-0 flex-1">
-              <div className="flex items-center">
-                {user.role === "admin" && (
-                  <ShieldCheck className="mr-2 text-red-500" size={16} title="Admin" />
-                )}
+              <div className="flex items-center justify-between w-full">
                 <div className="font-medium truncate">{user.name}</div>
+                {user.role === "admin" && (
+                  <ShieldCheck className="ml-2 text-red-500" size={16} title="Admin" />
+                )}
               </div>
               <div className="text-sm text-zinc-400 truncate">{user.email}</div>
             </div>

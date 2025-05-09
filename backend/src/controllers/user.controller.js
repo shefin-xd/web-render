@@ -2,7 +2,8 @@ import User from "../models/user.model.js";
 
 export const getUsers = async (req, res) => {
   try {
-    const Users = await User.find({}).select("-password");
+    const Users = await User.find({ _id: { $ne: loggedInUserId } }).select("-password");
+
     res.status(200).json(Users);
   } catch (error) {
     console.error("Error in getUsers: ", error.message);
@@ -17,7 +18,7 @@ export const deleteUser = async (req, res) => {
       return res.status(400).json({ message: "User not found" });
     }
     
-    await Product.findByIdAndDelete(req.params.id);
+    await User.findByIdAndDelete(req.params.id);
     
     res.status(200).json({ message: "Account deleted successfully" });
   } catch (error) {
@@ -30,11 +31,7 @@ export const toggleAdmin = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (user) {
-      if (user.role === "admin") {
-        user.role = "user"
-      } else if (user.role === "user") {
-        user.role = "admin"
-      }
+      user.role = (user.role !== "admin") ? "user" : "admin"
       const updatedUser = await user.save();
       res.json(updatedUser);
     } else {

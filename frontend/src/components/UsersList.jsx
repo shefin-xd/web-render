@@ -3,11 +3,13 @@ import { useUserStore } from "../store/useUserStore";
 import { useAuthStore } from "../store/useAuthStore";
 import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users, ShieldCheck } from "lucide-react";
+import UserModal from "./UserModal";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading, deleteUser, makeUserAdmin } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     getUsers();
@@ -18,6 +20,26 @@ const UsersList = () => {
     : users;
 
   if (isUsersLoading) return <UsersListSkeleton />;
+
+  const handleUserSelect = (user) => {
+    setSelectedUser(user);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedUser(null);
+  };
+
+  const handleDeleteUser  = (userId) => {
+    deleteUser(userId);
+    handleCloseModal();
+  };
+
+  const handleMakeAdmin = (userId) => {
+    makeUserAdmin(userId);
+    handleCloseModal();
+  };
 
   return (
     <div className="h-screen w-full border-r border-base-300 flex flex-col">
@@ -33,7 +55,7 @@ const UsersList = () => {
             type="checkbox"
             checked={showAdminOnly}
             onChange={(e) => setShowAdminOnly(e.target.checked)}
-            className="checkbox checkbox-sm"
+            className="checkbox checkbox -sm"
           />
           <span className="text-sm">Show admin only</span>
         </label>
@@ -50,7 +72,7 @@ const UsersList = () => {
               className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${
                 index < filteredUsers.length - 1 ? "border-b border-base-300" : ""
               } ${selectedUser ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
-              onClick={() => setSelectedUser (user)}
+              onClick={() => handleUserSelect(user)}
             >
               {/* Numbering on the left */}
               <div className="font-medium w-6 text-center select-none">{index + 1}</div>
@@ -87,6 +109,16 @@ const UsersList = () => {
           ))
         )}
       </div>
+
+      {/* User Modal */}
+      {isModalOpen && (
+        <User Modal
+          user={selectedUser}
+          onClose={handleCloseModal}
+          onDelete={handleDeleteUser}
+          onMakeAdmin={handleMakeAdmin}
+        />
+      )}
     </div>
   );
 };

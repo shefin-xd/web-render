@@ -95,7 +95,7 @@ const UsersList = () => {
                   }}
                   className={`btn btn-sm ${user.role === "admin" ? "btn-secondary" : "btn-primary"}`}
                 >
-                  {isDeletingUser ? (
+                  {isTogglingAdmin ? (
                     <>
                       <Loader2 className="size-5 animate-spin" />
                         Loading...
@@ -112,7 +112,7 @@ const UsersList = () => {
                   className="text-red-500 hover:text-red-700"
                   aria-label="Delete User"
                 >
-                  {isTogglingAdmin ? (
+                  {isDeletingUser ? (
                       <Loader2 className="size-5 animate-spin" />
                     ) : (
                       <Trash2 size={20} />

@@ -18,7 +18,7 @@ const UsersList = () => {
     : users;
 
   if (isUsersLoading) return <UsersListSkeleton />;
-
+  
   return (
     <div
       className="h-screen w-full border-r border-base-300 flex flex-col"
@@ -47,8 +47,8 @@ const UsersList = () => {
 
             {/* User info skeleton */}
             <div className="flex flex-col justify-center min-w-0 flex-1">
-              <div className="skeleton h-4 w-32 mb-2" />
-              <div className="skeleton h-3 w-16" />
+              <div className="font-medium truncate">{user.name}</div>
+              <div className="text-sm text-zinc-400 truncate">{user.email}</div>
             </div>
           </div>
         ))}

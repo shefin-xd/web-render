@@ -38,7 +38,12 @@ export const useUserStore = create((set, get) => ({
   toggleAdmin: async (userId) => {
     set({ isTogglingAdmin: true });
     try {
-      const response = await axiosInstance.patch(`/users/${userId}`);
+      const res = await axiosInstance.patch(`/users/${userId}`);
+      set((prevUsers) => ({
+				users: prevUsers.uers.map((user) =>
+          user._id === userId ? { ...user, role: res.data.role } : user
+        )
+      }));
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {

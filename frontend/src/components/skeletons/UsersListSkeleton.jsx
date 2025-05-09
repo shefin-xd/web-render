@@ -17,10 +17,10 @@ const UsersListSkeleton = () => {
         </div>
       </div>
 
-      {/* Skeleton Contacts */}
+      {/* Skeleton Users */}
       <div className="overflow-y-auto w-full py-3 flex-grow">
         {skeletonUsers.map((_, idx) => (
-          <div key={idx} className="w-full p-3 flex items-center gap-3">
+          <div key={idx} className={`w-full p-3 flex items-center gap-3 ${idx < skeletonUsers.length - 1 ? 'border-b border-base-300' : ''}`}>
             {/* Numbering on the left */}
             <div className="font-medium w-6 text-center select-none">
               {idx + 1}
@@ -44,3 +44,4 @@ const UsersListSkeleton = () => {
 };
 
 export default UsersListSkeleton;
+

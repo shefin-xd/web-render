@@ -20,71 +20,38 @@ const UsersList = () => {
   if (isUsersLoading) return <UsersListSkeleton />;
 
   return (
-    <div className="h-screen w-full border-r border-base-300 flex flex-col">
-    
-    {/* Header */}
-      <div className="border-b border-base-300 w-full p-5 flex items-center justify-between">
+    <div
+      className="h-screen w-full border-r border-base-300 flex flex-col"
+    >
+      {/* Header */}
+      <div className="border-b border-base-300 w-full p-5">
         <div className="flex items-center gap-2">
           <Users className="size-6" />
           <span className="font-medium">Users List</span>
         </div>
-        
-        <div className="flex items-center gap-2">
-          <label className="cursor-pointer flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={showAdminOnly}
-              onChange={(e) => setShowAdminOnly(e.target.checked)}
-              className="checkbox checkbox-sm"
-            />
-            <span className="text-sm">Show admin only</span>
-          </label>
-        </div>
       </div>
-      
-      {/* Users */}
+
+      {/* Skeleton Users */}
       <div className="overflow-y-auto w-full py-3 flex-grow">
         {filteredUsers.map((user, index) => (
-          <div key={user._id} className={`w-full p-3 flex items-center gap-3 ${idx < skeletonUsers.length - 1 ? 'border-b border-base-300' : ''}`}>
-          <button
-                onClick={() => setSelectedUser (user)}
-                className={`
-                  w-full p-3 flex items-center gap-2
-                  hover:bg-base-300 transition-colors
-                  ${selectedUser  ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}
-                `}
-              >
+          <div key={user._id} className={`w-full p-3 flex items-center gap-3 ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''}`}>
             {/* Numbering on the left */}
             <div className="font-medium w-6 text-center select-none">
-              {idx + 1}
+              {index + 1}
             </div>
-            
+
             {/* Avatar skeleton */}
             <div className="relative">
-              <img
-                    src={user.profilePic || "/avatar.png"}
-                    alt={user.name}
-                    className="size-12 object-cover rounded-full"
-                  />
-                  {onlineUsers.includes(user._id) && (
-                    <span
-                      className="absolute bottom-0 right-0 size-3 bg-green-500 
-                      rounded-full ring-2 ring-zinc-900"
-                    />
-                  )}
+              <div className="skeleton size-12 rounded-full" />
             </div>
-            
+
             {/* User info skeleton */}
             <div className="flex flex-col justify-center min-w-0 flex-1">
-              <div className="font-medium truncate">{user.name}</div>
-              <div className="text-sm text-zinc-400 truncate">{user.email}</div>
+              <div className="skeleton h-4 w-32 mb-2" />
+              <div className="skeleton h-3 w-16" />
             </div>
-            </button>
           </div>
         ))}
-        {filteredUsers.length === 0 && (
-            <div className="text-center text-zinc-500 py-4">No users available</div>
-          )}
       </div>
     </div>
   );

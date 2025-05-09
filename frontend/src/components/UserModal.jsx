@@ -5,38 +5,41 @@ const UserModal = ({ user, isOpen, onClose, onDelete, onMakeAdmin }) => {
   if (!isOpen || !user) return null;
 
   return (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="modal modal-open">
-            <div className="modal-box">
-              <button
-                onClick={onClose}
-                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                aria-label="Close modal"
-                type="button"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              <h2 className="font-bold text-center text-lg">Profile Information</h2>
-              <div className="flex flex-col items-center">
-                <img
-                  src={user.profilePic || "/avatar.png"}
-                  alt="Profile"
-                  className="size-20 rounded-full object-cover border-2 mb-2"
-                />
-                <p className="text-sm text-zinc-400">Full Name: {user.name}</p>
-                <p className="text-sm text-zinc-400">Email: {user.email}</p>
-                <p className="text-sm text-zinc-400">Member Since: {user.createdAt?.split("T")[0]}</p>
-                <p className="text-sm text-zinc-400">Status: Active</p>
-              </div>
-              <div className="modal-action">
-                <button onClick={() => setShowProfileModal(false)} className="btn">
-                  Close
-                </button>
-              </div>
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div className="modal modal-open">
+        <div className="modal-box">
+          <button
+            onClick={onClose}
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            aria-label="Close modal"
+            type="button"
+          >
+            <X className="w-5 h-5" />
+          </button>
+          <h2 className="font-bold text-center text-lg">Profile Information</h2>
+          <div className="flex flex-col items-center">
+            <img
+              src={user.profilePic || "/avatar.png"}
+              alt="Profile"
+              className="size-20 rounded-full object-cover border-2 mb-2"
+            />
+            <div className="bg-base-200 rounded-lg p-4 w-full max-w-xs text-center">
+              <p className="text-sm text-zinc-600 font-medium">Full Name: {user.name}</p>
+              <p className="text-sm text-zinc-600 font-medium">Email: {user.email}</p>
             </div>
+            <p className="text-sm text-zinc-400">Member Since: {user.createdAt?.split("T")[0]}</p>
+            <p className="text-sm text-zinc-400">Status: Active</p>
+          </div>
+          <div className="modal-action">
+            <button onClick={onClose} className="btn">
+              Close
+            </button>
           </div>
         </div>
-      )
+      </div>
+    </div>
+  );
+
     {/*
     <div className="fixed inset-0 flex items-center justify-center z-50" >
       <div className="modal modal-open">

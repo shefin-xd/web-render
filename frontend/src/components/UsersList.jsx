@@ -5,7 +5,7 @@ import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users, ShieldCheck, Trash2 } from "lucide-react";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading, deleteUser } = useUserStore();
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading, deleteUser, toggleAdmin } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
 
@@ -16,8 +16,6 @@ const UsersList = () => {
   const filteredUsers = showAdminOnly
     ? users.filter((user) => user.role === "admin")
     : users;
-
-  let isAdmin = (user.role == "admin") ? true : false;
 
   if (isUsersLoading) return <UsersListSkeleton />;
 
@@ -91,7 +89,7 @@ const UsersList = () => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation(); // Prevent triggering the onClick of the user div
-                    isAdmin(user._id);
+                    toggleAdmin(user._id);
                   }}
                   className={`btn btn-sm ${user.role === "admin" ? "btn-secondary" : "btn-primary"}`}
                 >
@@ -100,7 +98,7 @@ const UsersList = () => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation(); // Prevent triggering the onClick of the user div
-                    deleteUser (user._id);
+                    deleteUser(user._id);
                   }}
                   className="text-red-500 hover:text-red-700"
                   aria-label="Delete User"

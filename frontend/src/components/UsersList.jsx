@@ -22,22 +22,21 @@ const UsersList = () => {
   return (
     <div className="h-screen w-full border-r border-base-300 flex flex-col">
       {/* Header */}
-      <div className="border-b border-base-300 w-full p-5">
+      <div className="border-b border-base-300 w-full p-5 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Users className="size-6" />
           <span className="font-medium">Users List</span>
         </div>
-        <div className="flex items-center gap-2">
-          <label className="cursor-pointer flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={showAdminOnly}
-              onChange={(e) => setShowAdminOnly(e.target.checked)}
-              className="checkbox checkbox-sm"
-            />
-            <span className="text-sm">Show admin only</span>
-          </label>
-        </div>
+
+        <label className="cursor-pointer flex items-center gap-2">
+          <input
+            type="checkbox"
+            checked={showAdminOnly}
+            onChange={(e) => setShowAdminOnly(e.target.checked)}
+            className="checkbox checkbox-sm"
+          />
+          <span className="text-sm">Show admin only</span>
+        </label>
       </div>
 
       {/* Users */}
@@ -91,3 +90,4 @@ const UsersList = () => {
 };
 
 export default UsersList;
+

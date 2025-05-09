@@ -29,7 +29,7 @@ const UsersList = () => {
         </div>
       </div>
 
-      {/* Skeleton Users */}
+      {/* Users */}
       <div className="overflow-y-auto w-full py-3 flex-grow">
         {filteredUsers.map((user, index) => (
           <div
@@ -42,12 +42,22 @@ const UsersList = () => {
               {index + 1}
             </div>
 
-            {/* Avatar skeleton */}
+            {/* Avatar */}
             <div className="relative">
-              <div className="skeleton size-12 rounded-full" />
+              <img
+                src={user.profilePic || "/avatar.png"}
+                alt={user.name}
+                className="size-12 object-cover rounded-full"
+              />
+              {onlineUsers.includes(user._id) && (
+                <span
+                  className="absolute bottom-0 right-0 size-3 bg-green-500 
+                    rounded-full ring-2 ring-zinc-900"
+                />
+              )}
             </div>
 
-            {/* User info skeleton */}
+            {/* User info */}
             <div className="flex flex-col justify-center min-w-0 flex-1">
               <div className="font-medium truncate">{user.name}</div>
               <div className="text-sm text-zinc-400 truncate">{user.email}</div>

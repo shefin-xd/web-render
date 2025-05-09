@@ -5,7 +5,7 @@ import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users, ShieldCheck } from "lucide-react";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser , setSelectedUser , isUsersLoading } = useUserStore();
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
 
@@ -18,7 +18,7 @@ const UsersList = () => {
     : users;
 
   if (isUsersLoading) return <UsersListSkeleton />;
-  
+
   return (
     <div className="h-screen w-full border-r border-base-300 flex flex-col">
       {/* Header */}
@@ -34,13 +34,15 @@ const UsersList = () => {
         {filteredUsers.map((user, index) => (
           <div
             key={user._id}
-            className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''} ${selectedUser ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
-            onClick={() => setSelectedUser (user)} // Set selected user on click
+            className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${
+              index < filteredUsers.length - 1
+                ? "border-b border-base-300"
+                : ""
+            } ${selectedUser?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
+            onClick={() => setSelectedUser(user)}
           >
             {/* Numbering on the left */}
-            <div className="font-medium w-6 text-center select-none">
-              {index + 1}
-            </div>
+            <div className="font-medium w-6 text-center select-none">{index + 1}</div>
 
             {/* Avatar */}
             <div className="relative">
@@ -51,8 +53,7 @@ const UsersList = () => {
               />
               {onlineUsers.includes(user._id) && (
                 <span
-                  className="absolute bottom-0 right-0 size-3 bg-green-500 
-                    rounded-full ring-2 ring-zinc-900"
+                  className="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full ring-2 ring-zinc-900"
                 />
               )}
             </div>
@@ -62,7 +63,11 @@ const UsersList = () => {
               <div className="flex items-center justify-between w-full">
                 <div className="font-medium truncate">{user.name}</div>
                 {user.role === "admin" && (
-                  <ShieldCheck className="ml-2 text-red-500" size={16} title="Admin" />
+                  <ShieldCheck
+                    className="ml-2 text-red-500"
+                    size={20}
+                    title="Admin"
+                  />
                 )}
               </div>
               <div className="text-sm text-zinc-400 truncate">{user.email}</div>

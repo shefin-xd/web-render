@@ -37,4 +37,4 @@ const UsersListSkeleton = () => {
   );
 };
 
-export default UsersList;
+export default UsersListSkeleton;

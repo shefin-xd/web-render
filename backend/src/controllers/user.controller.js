@@ -18,6 +18,10 @@ export const deleteUser = async (req, res) => {
       return res.status(400).json({ message: "User not found" });
     }
     
+    if (user.role === "admin") {
+      return res.status(400).json({ message: "User is an Admin" });
+    }
+    
     await User.findByIdAndDelete(req.params.id);
     
     res.status(200).json({ message: "Account deleted successfully" });

@@ -4,8 +4,8 @@ const UserDetailModal = ({ user, onClose, onMakeAdmin, onDelete }) => {
   if (!user) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg p-5 w-96">
+    <div>
+      <div>
         <h2 className="text-lg font-bold mb-4">{user.name}</h2>
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Role:</strong> {user.role}</p>

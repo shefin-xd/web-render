@@ -15,9 +15,9 @@ const UsersListSkeleton = () => {
       
       <div className="overflow-y-auto w-full py-3 flex-grow">
         <div className="container mx-auto p-4">
-          {skeletonUsers.map((_, idx, index) => (
+          {skeletonUsers.map((_, idx) => (
             <div key={idx}>
-                <span className="font-medium">{index + 1}.</span> {/* Numbering */}
+                <span className="font-medium">{idx + 1}.</span> {/* Numbering */}
                 <div className="relative">
                   <div className="skeleton size-12 rounded-full" />
                 </div>

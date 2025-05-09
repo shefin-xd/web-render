@@ -77,7 +77,7 @@ const UsersList = () => {
                     {user.role === "admin" && (
                       <ShieldCheck
                         className="ml-2 text-red-500"
-                        size={20}
+                        size={18}
                         title="Admin"
                       />
                     )}

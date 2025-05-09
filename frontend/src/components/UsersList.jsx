@@ -112,7 +112,7 @@ const UsersList = () => {
                   className="text-red-500 hover:text-red-700"
                   aria-label="Delete User"
                 >
-                  {isDeletingUser ? (
+                  {isDeletingUser[user._id] ? (
                     <Loader2 className="size-5 animate-spin" />
                   ) : (
                     <Trash2 size={20} />

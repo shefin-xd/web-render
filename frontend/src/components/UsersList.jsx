@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useUserStore } from "../store/useUserStore";
 import { useAuthStore } from "../store/useAuthStore";
 import UsersListSkeleton from "./skeletons/UsersListSkeleton";
-import { Users, ShieldCheck, Trash2, Star } from "lucide-react";
+import { Users, ShieldCheck, Trash2, Star, Loader2 } from "lucide-react";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading, deleteUser, toggleAdmin } = useUserStore();
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading, deleteUser, toggleAdmin, isDeletingUser } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
 
@@ -95,7 +95,14 @@ const UsersList = () => {
                   }}
                   className={`btn btn-sm ${user.role === "admin" ? "btn-secondary" : "btn-primary"}`}
                 >
-                  {user.role === "admin" ? "Demote" : "Promote"}
+                  {isDeletingUser ? (
+                    <>
+                      <Loader2 className="size-5 animate-spin" />
+                        Loading...
+                      </>
+                    ) : (
+                      user.role === "admin" ? "Demote" : "Promote"
+                  )}
                 </button>
                 <button
                   onClick={(e) => {

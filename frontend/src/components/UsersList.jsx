@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useUserStore } from "../store/useUserStore";
 import { useAuthStore } from "../store/useAuthStore";
+import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users } from "lucide-react";
 
 const UsersList = () => {

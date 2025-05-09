@@ -18,15 +18,21 @@ const UsersListSkeleton = () => {
           {skeletonUsers.map((_, idx) => (
             <div key={idx}>
                 <span className="font-medium">{idx + 1}.</span> {/* Numbering */}
-                <div className="relative">
-                  <div className="skeleton size-12 rounded-full" />
-                </div>
+              <div className="chat-image avatar">
+            <div className="size-12 rounded-full">
+              <div className="skeleton w-full h-full rounded-full" />
+            </div>
+          </div>
 
-                {/* User info - name and email */}
-                <div className="flex flex-col text-left min-w-0 ml-2">
-                  <div className="skeleton h-4 w-32 mb-2" />
-                  <div className="skeleton h-3 w-16" />
-                </div>
+              <div className="chat-header mb-1">
+            <div className="skeleton h-4 w-32 mb-2" />
+          </div>
+
+          <div className="chat-bubble bg-transparent p-0">
+            <div className="skeleton h-3 w-16" />
+          </div>
+
+
 
               <hr className="border-t border-base-300" /> {/* Divider line */}
             </div>

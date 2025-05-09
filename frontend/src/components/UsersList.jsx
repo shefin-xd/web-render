@@ -5,9 +5,10 @@ import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users } from "lucide-react";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();
+  const { getUsers, users, isUsersLoading } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
+  const [selectedUser Id, setSelectedUser Id] = useState(null); // State to track selected user
 
   useEffect(() => {
     getUsers();
@@ -20,9 +21,7 @@ const UsersList = () => {
   if (isUsersLoading) return <UsersListSkeleton />;
   
   return (
-    <div
-      className="h-screen w-full border-r border-base-300 flex flex-col"
-    >
+    <div className="h-screen w-full border-r border-base-300 flex flex-col">
       {/* Header */}
       <div className="border-b border-base-300 w-full p-5">
         <div className="flex items-center gap-2">
@@ -34,7 +33,11 @@ const UsersList = () => {
       {/* Skeleton Users */}
       <div className="overflow-y-auto w-full py-3 flex-grow">
         {filteredUsers.map((user, index) => (
-          <div key={user._id} className={`w-full p-3 flex items-center gap-3 ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''}`}>
+          <div
+            key={user._id}
+            className={`w-full p-3 flex items-center gap-3 ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''} ${selectedUser Id === user._id ? 'bg-blue-100' : ''}`} // Change background color if selected
+            onClick={() => setSelectedUser Id(user._id)} // Set selected user on click
+          >
             {/* Numbering on the left */}
             <div className="font-medium w-6 text-center select-none">
               {index + 1}
@@ -58,3 +61,4 @@ const UsersList = () => {
 };
 
 export default UsersList;
+

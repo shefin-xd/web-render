@@ -95,15 +95,15 @@ const UsersList = () => {
                   }}
                   className={`btn btn-sm ${user.role === "admin" ? "btn-secondary" : "btn-primary"}`}
                 >
-                  {user.role === "admin" ? "Remove Admin" : "Make Admin"}
+                  {user.role === "admin" ? "Promote" : "Demote"}
                 </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation(); // Prevent triggering the onClick of the user div
-                    deleteUser (user._id);
+                    deleteUser(user._id);
                   }}
                   className="text-red-500 hover:text-red-700"
-                  aria-label="Delete User "
+                  aria-label="Delete User"
                 >
                   <Trash2 size={20} />
                 </button>

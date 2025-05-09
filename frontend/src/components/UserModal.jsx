@@ -11,14 +11,14 @@ const UserModal = ({ user, isOpen, onClose, onDelete, onMakeAdmin }) => {
         {/* Close button on top right */}
         <button
           onClick={onClose}
-          className="btn btn-sm btn-circle absolute right-2 top-2"
+          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
           aria-label="Close modal"
           type="button"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <h3 className="text-lg font-bold mb-4 text-center">{user.name}</h3>
+        <h2 className="font-bold text-center text-lg">{user.name}</h2>
 
         <div className="flex flex-col items-center space-y-4">
           <img

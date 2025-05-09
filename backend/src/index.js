@@ -30,7 +30,7 @@ app.use(
 );
 
 app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
+app.use("/api/users", userRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));

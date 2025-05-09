@@ -33,13 +33,18 @@ const Navbar = () => {
               <Settings className="w-4 h-4" />
               <span className="hidden sm:inline">Settings</span>
             </Link>
+            
+            <Link to={"/notifications"} className={`btn btn-sm gap-2`}>
+              <BellIcon className="size-5" />
+              <span className="hidden sm:inline">Notifications</span>
+            </Link>
 
             {isAdmin && (
               <Link to={"/admin-dashboard"} className={`btn btn-sm gap-2`}>
                 <Lock className="size-5" />
                 <span className="hidden sm:inline">Dashboard</span>
               </Link>
-						)}
+            )}
 
             {authUser && (
               <>

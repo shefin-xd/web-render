@@ -1,14 +1,39 @@
 import React from "react";
-import { X, Trash2, ShieldCheck } from "lucide-react";
+import { Camera, Mail, User, X, Trash2, ShieldCheck, Loader2 } from "lucide-react";
 
 const UserModal = ({ user, isOpen, onClose, onDelete, onMakeAdmin }) => {
   if (!isOpen || !user) return null;
 
   return (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="modal modal-open">
+            <div className="modal-box">
+              <h2 className="font-bold text-center text-lg">Profile Information</h2>
+              <div className="flex flex-col items-center">
+                <img
+                  src={user.profilePic || "/avatar.png"}
+                  alt="Profile"
+                  className="size-32 rounded-full object-cover border-4 mb-4"
+                />
+                <p className="text-sm text-zinc-400">Full Name: {user.name}</p>
+                <p className="text-sm text-zinc-400">Email: {user.email}</p>
+                <p className="text-sm text-zinc-400">Member Since: {user.createdAt?.split("T")[0]}</p>
+                <p className="text-sm text-zinc-400">Status: Active</p>
+              </div>
+              <div className="modal-action">
+                <button onClick={() => setShowProfileModal(false)} className="btn">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    {/*
     <div className="fixed inset-0 flex items-center justify-center z-50" >
       <div className="modal modal-open">
         <div className="modal-box">
-        {/* Close button on top right */}
+        
         <button
           onClick={onClose}
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -67,6 +92,7 @@ const UserModal = ({ user, isOpen, onClose, onDelete, onMakeAdmin }) => {
     </div>
     </div>
   );
+  */}
 };
 
 export default UserModal;

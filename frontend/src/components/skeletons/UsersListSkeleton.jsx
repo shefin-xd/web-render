@@ -1,7 +1,6 @@
 import { Users } from "lucide-react";
 
 const UsersListSkeleton = () => {
-  // Create 8 skeleton items
   const skeletonUsers = Array(8).fill(null);
 
   return (
@@ -12,31 +11,36 @@ const UsersListSkeleton = () => {
           <span className="font-medium">Users List</span>
         </div>
       </div>
-      
+
       <div className="overflow-y-auto w-full py-3 flex-grow">
         <div className="container mx-auto p-4">
-          {skeletonUsers.map((_, idx) => (
+           {skeletonUsers.map((_, idx) => (
             <div key={idx}>
+              
                 <span className="font-medium">{idx + 1}.</span> {/* Numbering */}
-              <div className="chat-image avatar">
-            <div className="size-12 rounded-full">
-              <div className="skeleton w-full h-full rounded-full" />
-            </div>
-          </div>
+                <div className="relative">
+                  <img
+                    src={user.profilePic || "/avatar.png"}
+                    alt={user.name}
+                    className="size-12 object-cover rounded-full"
+                  />
+                  {onlineUsers.includes(user._id) && (
+                    <span
+                      className="absolute bottom-0 right-0 size-3 bg-green-500 
+                      rounded-full ring-2 ring-zinc-900"
+                    />
+                  )}
+                </div>
 
-              <div className="chat-header mb-1">
-            <div className="skeleton h-4 w-32 mb-2" />
-          </div>
-
-          <div className="chat-bubble bg-transparent p-0">
-            <div className="skeleton h-3 w-16" />
-          </div>
-
-
-
+                {/* User info - name and email */}
+                <div className="flex flex-col text-left min-w-0 ml-2">
+                  <div className="font-medium truncate">Name</div>
+                  <div className="text-sm text-zinc-400 truncate">email</div>
+                </div>
               <hr className="border-t border-base-300" /> {/* Divider line */}
             </div>
           ))}
+
         </div>
       </div>
     </div>

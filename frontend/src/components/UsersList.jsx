@@ -34,7 +34,7 @@ const UsersList = () => {
         {filteredUsers.map((user, index) => (
           <div
             key={user._id}
-            className={`w-full p-3 flex items-center gap-3 ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''} ${selectedUser  ?._id === user._id ? "bg-blue-100" : ""}`}
+            className={`w-full p-3 flex items-center gap-3 ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''} ${selectedUser  ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
             onClick={() => setSelectedUser (user)} // Set selected user on click
           >
             {/* Numbering on the left */}

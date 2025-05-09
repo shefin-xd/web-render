@@ -5,7 +5,7 @@ import { axiosInstance } from "../lib/axios";
 export const useUserStore = create((set, get) => ({
   users: [],
   selectedUser: null,
-  isDeletingUser: false,
+  isDeletingUser: {},
   isTogglingAdmin: {},
   isUsersLoading: false,
 
@@ -22,7 +22,9 @@ export const useUserStore = create((set, get) => ({
   },
 
   deleteUser: async (userId) => {
-    set({ isDeletingUser: true });
+    set((state) => ({
+      isDeletingUser: { ...state.isTogglingAdmin, [userId]: true }
+    }));
     try {
       await axiosInstance.delete(`/users/${userId}`);
       set((prevUsers) => ({
@@ -31,7 +33,9 @@ export const useUserStore = create((set, get) => ({
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
-      set({ isDeletingUser: false });
+      set((state) => ({
+        isDeletingUser: { ...state.isTogglingAdmin, [userId]: false }
+      }));
     }
   },
   

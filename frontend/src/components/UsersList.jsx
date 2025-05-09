@@ -27,6 +27,17 @@ const UsersList = () => {
           <Users className="size-6" />
           <span className="font-medium">Users List</span>
         </div>
+        <div className="flex items-center gap-2">
+          <label className="cursor-pointer flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={showAdminOnly}
+              onChange={(e) => setShowAdminOnly(e.target.checked)}
+              className="checkbox checkbox-sm"
+            />
+            <span className="text-sm">Show admin only</span>
+          </label>
+        </div>
       </div>
 
       {/* Users */}

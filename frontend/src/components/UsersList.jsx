@@ -19,6 +19,20 @@ const UsersList = () => {
 
   if (isUsersLoading) return <UsersListSkeleton />;
 
+  const handleToggleAdmin = (userId) => {
+    const confirmPromote = window.confirm("Are you sure you want to promote/demote this user?");
+    if (confirmPromote) {
+      toggleAdmin(userId);
+    }
+  };
+
+  const handleDeleteUser  = (userId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+    if (confirmDelete) {
+      deleteUser (userId);
+    }
+  };
+
   return (
     <div className="h-screen w-full border-r border-base-300 flex flex-col">
       {/* Header */}
@@ -91,7 +105,7 @@ const UsersList = () => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation(); // Prevent triggering the onClick of the user div
-                    toggleAdmin(user._id);
+                    handleToggleAdmin(user._id);
                   }}
                   className={`btn btn-sm ${user.role === "admin" ? "btn-secondary" : "btn-primary"}`}
                 >
@@ -107,7 +121,7 @@ const UsersList = () => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation(); // Prevent triggering the onClick of the user div
-                    deleteUser(user._id);
+                    handleDeleteUser (user._id);
                   }}
                   className="text-red-500 hover:text-red-700"
                   aria-label="Delete User"

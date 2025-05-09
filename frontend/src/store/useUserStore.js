@@ -6,7 +6,7 @@ export const useUserStore = create((set, get) => ({
   users: [],
   selectedUser: null,
   isDeletingUser: false,
-  isTogglingAdmin: false,
+  isTogglingAdmin: {},
   isUsersLoading: false,
 
   getUsers: async () => {
@@ -24,7 +24,7 @@ export const useUserStore = create((set, get) => ({
   deleteUser: async (userId) => {
     set({ isDeletingUser: true });
     try {
-      const res = await axiosInstance.delete(`/users/${userId}`);
+      await axiosInstance.delete(`/users/${userId}`);
       set((prevUsers) => ({
         users: prevUsers.users.filter((user) => user._id !== userId)
       }));
@@ -36,7 +36,9 @@ export const useUserStore = create((set, get) => ({
   },
   
   toggleAdmin: async (userId) => {
-    set({ isTogglingAdmin: true });
+    set((state) => ({
+      isTogglingAdmin: { ...state.isTogglingAdmin, [userId]: true }
+    }));
     try {
       const res = await axiosInstance.patch(`/users/${userId}`);
       set((prevUsers) => ({
@@ -47,9 +49,11 @@ export const useUserStore = create((set, get) => ({
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
-      set({ isTogglingAdmin: false });
+      set((state) => ({
+        isTogglingAdmin: { ...state.isTogglingAdmin, [userId]: false }
+      }));
     }
   },
   
-  setSelectedUser: (selectedUser) => set({ selectedUser }),
+  setSelectedUser: (selectedUser ) => set({ selectedUser  }),
 }));

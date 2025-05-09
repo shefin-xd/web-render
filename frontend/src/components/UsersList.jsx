@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useUserStore } from "../store/useUserStore";
 import { useAuthStore } from "../store/useAuthStore";
 import UsersListSkeleton from "./skeletons/UsersListSkeleton";
-import { Users, ShieldCheck } from "lucide-react";
+import { Users, ShieldCheck, Trash2 } from "lucide-react";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading, deleteUser } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
 
@@ -16,6 +16,8 @@ const UsersList = () => {
   const filteredUsers = showAdminOnly
     ? users.filter((user) => user.role === "admin")
     : users;
+
+  let isAdmin = (user.role == "admin") ? true : false;
 
   if (isUsersLoading) return <UsersListSkeleton />;
 
@@ -82,6 +84,29 @@ const UsersList = () => {
                   )}
                 </div>
                 <div className="text-sm text-zinc-400 truncate">{user.email}</div>
+              </div>
+
+              {/* Admin Toggle and Delete Icon */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent triggering the onClick of the user div
+                    isAdmin(user._id);
+                  }}
+                  className={`btn btn-sm ${user.role === "admin" ? "btn-secondary" : "btn-primary"}`}
+                >
+                  {user.role === "admin" ? "Remove Admin" : "Make Admin"}
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent triggering the onClick of the user div
+                    deleteUser (user._id);
+                  }}
+                  className="text-red-500 hover:text-red-700"
+                  aria-label="Delete User"
+                >
+                  <Trash2 size={20} />
+                </button>
               </div>
             </div>
           ))

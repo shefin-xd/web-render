@@ -5,7 +5,7 @@ import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users, ShieldCheck } from "lucide-react";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();
+  const { getUsers, users, selectedUser , setSelectedUser , isUsersLoading } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
 
@@ -41,53 +41,54 @@ const UsersList = () => {
 
       {/* Users */}
       <div className="overflow-y-auto w-full py-3 flex-grow">
-        {filteredUsers.map((user, index) => (
-          <div
-            key={user._id}
-            className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${
-              index < filteredUsers.length - 1
-                ? "border-b border-base-300"
-                : ""
-            } ${selectedUser?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
-            onClick={() => setSelectedUser(user)}
-          >
-            {/* Numbering on the left */}
-            <div className="font-medium w-6 text-center select-none">{index + 1}</div>
+        {filteredUsers.length === 0 ? (
+          <div className="text-center text-gray-500">No users found</div>
+        ) : (
+          filteredUsers.map((user, index) => (
+            <div
+              key={user._id}
+              className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${
+                index < filteredUsers.length - 1 ? "border-b border-base-300" : ""
+              } ${selectedUser ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
+              onClick={() => setSelectedUser (user)}
+            >
+              {/* Numbering on the left */}
+              <div className="font-medium w-6 text-center select-none">{index + 1}</div>
 
-            {/* Avatar */}
-            <div className="relative">
-              <img
-                src={user.profilePic || "/avatar.png"}
-                alt={user.name}
-                className="size-12 object-cover rounded-full"
-              />
-              {onlineUsers.includes(user._id) && (
-                <span
-                  className="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full ring-2 ring-zinc-900"
+              {/* Avatar */}
+              <div className="relative">
+                <img
+                  src={user.profilePic || "/avatar.png"}
+                  alt={user.name}
+                  className="size-12 object-cover rounded-full"
                 />
-              )}
-            </div>
-
-            {/* User info */}
-            <div className="flex flex-col justify-center min-w-0 flex-1">
-              <div className="flex items-center justify-between w-full">
-                <div className="font-medium truncate">{user.name}</div>
-                {user.role === "admin" && (
-                  <ShieldCheck
-                    className="ml-2 text-red-500"
-                    size={20}
-                    title="Admin"
+                {onlineUsers.includes(user._id) && (
+                  <span
+                    className="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full ring-2 ring-zinc-900"
                   />
                 )}
               </div>
-              <div className="text-sm text-zinc-400 truncate">{user.email}</div>
+
+              {/* User info */}
+              <div className="flex flex-col justify-center min-w-0 flex-1">
+                <div className="flex items-center justify-between w-full">
+                  <div className="font-medium truncate">{user.name}</div>
+                  {user.role === "admin" && (
+                    <ShieldCheck
+                      className="ml-2 text-red-500"
+                      size={20}
+                      title="Admin"
+                    />
+                  )}
+                </div>
+                <div className="text-sm text-zinc-400 truncate">{user.email}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
 };
 
 export default UsersList;
-

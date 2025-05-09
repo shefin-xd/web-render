@@ -3,11 +3,15 @@ import { useUserStore } from "../store/useUserStore";
 import { useAuthStore } from "../store/useAuthStore";
 import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users, ShieldCheck } from "lucide-react";
+import UserDetailModal from "./User DetailModal"; // Import the modal component
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser , setSelectedUser , isUsersLoading } = useUserStore();
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const makeUserAdmin ="";
+  const deleteUser="";
 
   useEffect(() => {
     getUsers();
@@ -18,6 +22,21 @@ const UsersList = () => {
     : users;
 
   if (isUsersLoading) return <UsersListSkeleton />;
+
+  const handleUserClick = (user) => {
+    setSelectedUser(user);
+    setIsModalOpen(true);
+  };
+
+  const handleMakeAdmin = (userId) => {
+    makeUserAdmin(userId);
+    setIsModalOpen(false);
+  };
+
+  const handleDeleteUser = (userId) => {
+    deleteUser(userId);
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="h-screen w-full border-r border-base-300 flex flex-col">
@@ -46,11 +65,11 @@ const UsersList = () => {
         ) : (
           filteredUsers.map((user, index) => (
             <div
-              key={user._id}
+              key ={user._id}
               className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${
                 index < filteredUsers.length - 1 ? "border-b border-base-300" : ""
-              } ${selectedUser ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
-              onClick={() => setSelectedUser (user)}
+              } ${selectedUser  ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
+              onClick={() => handleUserClick(user)}
             >
               {/* Numbering on the left */}
               <div className="font-medium w-6 text-center select-none">{index + 1}</div>
@@ -87,6 +106,15 @@ const UsersList = () => {
           ))
         )}
       </div>
+
+      {isModalOpen && (
+        <User DetailModal
+          user={selectedUser}
+          onClose={() => setIsModalOpen(false)}
+          onMakeAdmin={handleMakeAdmin}
+          onDelete={handleDeleteUser}
+        />
+      )}
     </div>
   );
 };

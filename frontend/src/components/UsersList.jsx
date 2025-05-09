@@ -3,7 +3,7 @@ import { useUserStore } from "../store/useUserStore";
 import { useAuthStore } from "../store/useAuthStore";
 import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users, ShieldCheck } from "lucide-react";
-import UserDetailModal from "./User DetailModal"; // Import the modal component
+import UserDetailModal from "./UserDetailModal"; // Import the modal component
 
 const UsersList = () => {
   const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();

@@ -4,7 +4,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import { Users } from "lucide-react";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser , setSelectedUser  } = useUserStore();
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
 
@@ -15,6 +15,8 @@ const UsersList = () => {
   const filteredUsers = showAdminOnly
     ? users.filter((user) => user.role === "admin")
     : users;
+
+  if (isUsersLoading) return <UsersListSkeleton />;
 
   return (
     <div className="h-screen w-full flex flex-col">

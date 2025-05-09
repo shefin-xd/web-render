@@ -3,14 +3,11 @@ import { useUserStore } from "../store/useUserStore";
 import { useAuthStore } from "../store/useAuthStore";
 import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users, ShieldCheck } from "lucide-react";
-import UserModal from "./UserModal";
 
 const UsersList = () => {
-  const { getUsers, users, isUsersLoading, deleteUser, makeUserAdmin } = useUserStore();
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     getUsers();
@@ -19,26 +16,6 @@ const UsersList = () => {
   const filteredUsers = showAdminOnly
     ? users.filter((user) => user.role === "admin")
     : users;
-
-  const openModalWithUser = (user) => {
-    setSelectedUser(user);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedUser(null);
-  };
-
-  const handleDeleteUser = (userId) => {
-    deleteUser(userId);
-    closeModal();
-  };
-
-  const handleMakeAdmin = (userId) => {
-    makeUserAdmin(userId);
-    closeModal();
-  };
 
   if (isUsersLoading) return <UsersListSkeleton />;
 
@@ -72,8 +49,8 @@ const UsersList = () => {
               key={user._id}
               className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${
                 index < filteredUsers.length - 1 ? "border-b border-base-300" : ""
-              } ${selectedUser?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
-              onClick={() => openModalWithUser(user)}
+              } ${selectedUser ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
+              onClick={() => setSelectedUser (user)}
             >
               {/* Numbering on the left */}
               <div className="font-medium w-6 text-center select-none">{index + 1}</div>
@@ -110,15 +87,6 @@ const UsersList = () => {
           ))
         )}
       </div>
-
-      {/* User Modal */}
-      <UserModal
-        user={selectedUser}
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        onDelete={handleDeleteUser}
-        onMakeAdmin={handleMakeAdmin}
-      />
     </div>
   );
 };

@@ -30,6 +30,7 @@ export const useUserStore = create((set, get) => ({
       set((prevUsers) => ({
         users: prevUsers.users.filter((user) => user._id !== userId)
       }));
+      toast.success("Account deleted successfully");
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
@@ -50,6 +51,8 @@ export const useUserStore = create((set, get) => ({
           user._id === userId ? { ...user, role: res.data.role } : user
         )
       }));
+      const xd = (res.data.role === "admin") ? "Promoted" : "Demoted"
+      toast.success("User "+ xd +" successfully");
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {

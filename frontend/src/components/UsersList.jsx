@@ -6,7 +6,7 @@ import { Users, ShieldCheck } from "lucide-react";
 import UserModal from "./UserModal";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading, deleteUser, makeUserAdmin } = useUserStore();
+  const { getUsers, users, isUsersLoading, deleteUser, makeUserAdmin } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);

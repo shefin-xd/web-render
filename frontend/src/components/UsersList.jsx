@@ -91,7 +91,7 @@ const UsersList = () => {
 <button
 									onClick={(e) => {
                     e.stopPropagation();
-toggleFeaturedProduct(product._id)
+toggleAdmin(user._id)
                   }}
 									className={`p-1 rounded-full ${
 										user.role ==="admin" ? "bg-yellow-400 text-gray-900" : "bg-gray-600 text-gray-300"

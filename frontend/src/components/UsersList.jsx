@@ -5,7 +5,7 @@ import UsersListSkeleton from "./skeletons/UsersListSkeleton";
 import { Users, ShieldCheck, Trash2, Star, Loader2 } from "lucide-react";
 
 const UsersList = () => {
-  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading, deleteUser, toggleAdmin, isDeletingUser } = useUserStore();
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading, deleteUser, toggleAdmin, isDeletingUser, isTogglingAdmin } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
 
@@ -112,7 +112,11 @@ const UsersList = () => {
                   className="text-red-500 hover:text-red-700"
                   aria-label="Delete User"
                 >
-                  <Trash2 size={20} />
+                  {isTogglingAdmin ? (
+                      <Loader2 className="size-5 animate-spin" />
+                    ) : (
+                      <Trash2 size={20} />
+                  )}
                 </button>
               </div>
             </div>

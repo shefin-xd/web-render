@@ -95,7 +95,7 @@ const UsersList = () => {
                   }}
                   className={`btn btn-sm ${user.role === "admin" ? "btn-secondary" : "btn-primary"}`}
                 >
-                  {user.role === "admin" ? "Promote" : "Demote"}
+                  {user.role === "admin" ? "Demote" : "Promote"}
                 </button>
                 <button
                   onClick={(e) => {

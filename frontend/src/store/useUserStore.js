@@ -40,7 +40,7 @@ export const useUserStore = create((set, get) => ({
     try {
       const res = await axiosInstance.patch(`/users/${userId}`);
       set((prevUsers) => ({
-				users: prevUsers.uers.map((user) =>
+        users: prevUsers.users.map((user) =>
           user._id === userId ? { ...user, role: res.data.role } : user
         )
       }));

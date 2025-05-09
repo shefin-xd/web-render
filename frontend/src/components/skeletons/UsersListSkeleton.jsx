@@ -2,7 +2,7 @@ import { Users } from "lucide-react";
 
 const UsersListSkeleton = () => {
   // Create 8 skeleton items
-  const skeletonContacts = Array(8).fill(null);
+  const skeletonUsers = Array(8).fill(null);
 
   return (
     <div
@@ -19,10 +19,10 @@ const UsersListSkeleton = () => {
 
       {/* Skeleton Contacts */}
       <div className="overflow-y-auto w-full py-3 flex-grow">
-        {skeletonContacts.map((_, idx) => (
+        {skeletonUsers.map((_, idx) => (
           <div key={idx} className="w-full p-3 flex items-center gap-3">
             {/* Numbering on the left */}
-            <div className="text-gray-500 font-medium w-6 text-center select-none">
+            <div className="font-medium w-6 text-center select-none">
               {idx + 1}
             </div>
 

@@ -95,13 +95,13 @@ const UsersList = () => {
                   }}
                   className={`btn btn-sm ${user.role === "admin" ? "btn-secondary" : "btn-primary"}`}
                 >
-                  {isTogglingAdmin ? (
+                  {isTogglingAdmin[user._id] ? (
                     <>
                       <Loader2 className="size-5 animate-spin" />
-                        Loading...
-                      </>
-                    ) : (
-                      user.role === "admin" ? "Demote" : "Promote"
+                      Loading...
+                    </>
+                  ) : (
+                    user.role === "admin" ? "Demote" : "Promote"
                   )}
                 </button>
                 <button
@@ -113,9 +113,9 @@ const UsersList = () => {
                   aria-label="Delete User"
                 >
                   {isDeletingUser ? (
-                      <Loader2 className="size-5 animate-spin" />
-                    ) : (
-                      <Trash2 size={20} />
+                    <Loader2 className="size-5 animate-spin" />
+                  ) : (
+                    <Trash2 size={20} />
                   )}
                 </button>
               </div>

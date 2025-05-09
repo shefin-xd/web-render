@@ -34,13 +34,9 @@ const UsersList = () => {
         {filteredUsers.map((user, index) => (
           <div
             key={user._id}
-            className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''} ${selectedUser  ?._id === user._id ? "bg-blue-100" : ""}`}
-             // Set selected user on click
+            className={`w-full p-3 flex items-center gap-3 ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''} ${selectedUser  ?._id === user._id ? "bg-blue-100" : ""}`}
+            onClick={() => setSelectedUser (user)} // Set selected user on click
           >
-            <button
-                onClick={() => setSelectedUser (user)}
-                
-              >
             {/* Numbering on the left */}
             <div className="font-medium w-6 text-center select-none">
               {index + 1}
@@ -56,9 +52,7 @@ const UsersList = () => {
               <div className="font-medium truncate">{user.name}</div>
               <div className="text-sm text-zinc-400 truncate">{user.email}</div>
             </div>
-              </button>
           </div>
-            
         ))}
       </div>
     </div>
@@ -66,4 +60,3 @@ const UsersList = () => {
 };
 
 export default UsersList;
-

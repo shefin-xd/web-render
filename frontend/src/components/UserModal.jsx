@@ -8,12 +8,20 @@ const UserModal = ({ user, isOpen, onClose, onDelete, onMakeAdmin }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="modal modal-open">
             <div className="modal-box">
+              <button
+                onClick={onClose}
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                aria-label="Close modal"
+                type="button"
+              >
+                <X className="w-5 h-5" />
+              </button>
               <h2 className="font-bold text-center text-lg">Profile Information</h2>
               <div className="flex flex-col items-center">
                 <img
                   src={user.profilePic || "/avatar.png"}
                   alt="Profile"
-                  className="size-32 rounded-full object-cover border-4 mb-4"
+                  className="size-20 rounded-full object-cover border-2 mb-2"
                 />
                 <p className="text-sm text-zinc-400">Full Name: {user.name}</p>
                 <p className="text-sm text-zinc-400">Email: {user.email}</p>

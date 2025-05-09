@@ -8,7 +8,7 @@ const UsersList = () => {
   const { getUsers, users, isUsersLoading } = useUserStore();
   const { onlineUsers } = useAuthStore();
   const [showAdminOnly, setShowAdminOnly] = useState(false);
-  const [selectedUser Id, setSelectedUser Id] = useState(null); // State to track selected user
+  const [selectedUserId, setSelectedUserId] = useState(null); // State to track selected user
 
   useEffect(() => {
     getUsers();
@@ -35,8 +35,8 @@ const UsersList = () => {
         {filteredUsers.map((user, index) => (
           <div
             key={user._id}
-            className={`w-full p-3 flex items-center gap-3 ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''} ${selectedUser Id === user._id ? 'bg-blue-100' : ''}`} // Change background color if selected
-            onClick={() => setSelectedUser Id(user._id)} // Set selected user on click
+            className={`w-full p-3 flex items-center gap-3 ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''} ${selectedUserId === user._id ? 'bg-blue-100' : ''}`} // Change background color if selected
+            onClick={() => setSelectedUserId(user._id)} // Set selected user on click
           >
             {/* Numbering on the left */}
             <div className="font-medium w-6 text-center select-none">

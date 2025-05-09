@@ -35,14 +35,6 @@ const UsersList = () => {
       <div className="overflow-y-auto w-full py-3 flex-grow">
         {filteredUsers.map((user, index) => (
           <div key={user._id} className={`w-full p-3 flex items-center gap-3 ${index < filteredUsers.length - 1 ? 'border-b border-base-300' : ''}`}>
-            <button
-                onClick={() => setSelectedUser (user)}
-                className={`
-                  w-full p-3 flex items-center gap-2
-                  hover:bg-base-300 transition-colors
-                  ${selectedUser  ?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}
-                `}
-              >
             {/* Numbering on the left */}
             <div className="font-medium w-6 text-center select-none">
               {index + 1}
@@ -58,7 +50,6 @@ const UsersList = () => {
               <div className="font-medium truncate">{user.name}</div>
               <div className="text-sm text-zinc-400 truncate">{user.email}</div>
             </div>
-            </button>
           </div>
         ))}
       </div>
